@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>A股晨间分析日报 - 2026年04月30日</title>
+    <style>
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-card: #1e293b;
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --accent-cyan: #06b6d4;
+            --color-up: #ef4444;
+            --color-down: #22c55e;
+            --border-color: #334155;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            font-size: 15px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 16px 40px;
+        }
+
+        /* 顶部头图区域 */
+        .header {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2d1b69 50%, #1a1a2e 100%);
+            padding: 32px 20px 24px;
+            margin: 0 -16px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(59,130,246,0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 50%, rgba(139,92,246,0.1) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1) rotate(0deg); }
+            100% { transform: scale(1.1) rotate(3deg); }
+        }
+
+        .header h1 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #60a5fa, #a78bfa, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            margin-bottom: 8px;
+        }
+
+        .header .date {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            position: relative;
+        }
+
+        .header .update-time {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            position: relative;
+            margin-top: 4px;
+        }
+
+        /* 卡片样式 */
+        h2 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 24px 0 12px;
+            padding: 12px 16px;
+            background: linear-gradient(135deg, rgba(59,130,246,0.12), rgba(139,92,246,0.08));
+            border-left: 3px solid var(--accent-blue);
+            border-radius: 0 8px 8px 0;
+        }
+
+        h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 16px 0 8px;
+            padding: 8px 12px;
+            background: rgba(59,130,246,0.06);
+            border-radius: 6px;
+        }
+
+        h1 {
+            display: none; /* 隐藏MD中的顶级标题，用header替代 */
+        }
+
+        /* 段落 */
+        p {
+            margin: 8px 0;
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+        }
+
+        /* 表格 */
+        .table-wrap {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 12px 0;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            background: var(--bg-card);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        thead {
+            background: linear-gradient(135deg, rgba(59,130,246,0.2), rgba(139,92,246,0.15));
+        }
+
+        th {
+            padding: 10px 8px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-primary);
+            white-space: nowrap;
+            font-size: 0.82rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        td {
+            padding: 9px 8px;
+            border-bottom: 1px solid rgba(51,65,85,0.5);
+            color: var(--text-secondary);
+            font-size: 0.82rem;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover {
+            background: rgba(59,130,246,0.05);
+        }
+
+        /* 涨跌颜色 */
+        .up {
+            color: var(--color-up);
+            font-weight: 600;
+        }
+
+        .down {
+            color: var(--color-down);
+            font-weight: 600;
+        }
+
+        /* 引用块 */
+        blockquote {
+            margin: 12px 0;
+            padding: 12px 16px;
+            background: rgba(234,179,8,0.08);
+            border-left: 3px solid #eab308;
+            border-radius: 0 6px 6px 0;
+            color: #fbbf24;
+            font-size: 0.88rem;
+            line-height: 1.6;
+        }
+
+        /* 列表 */
+        ul {
+            margin: 8px 0;
+            padding-left: 20px;
+        }
+
+        li {
+            margin: 6px 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* 水平线 */
+        hr {
+            border: none;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+            margin: 20px 0;
+        }
+
+        /* 强调文字 */
+        strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* 底部免责声明 */
+        .footer {
+            margin-top: 32px;
+            padding: 16px;
+            background: rgba(239,68,68,0.06);
+            border: 1px solid rgba(239,68,68,0.15);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .footer p {
+            color: var(--text-muted);
+            font-size: 0.78rem;
+            line-height: 1.6;
+        }
+
+        /* 快捷导航 */
+        .nav-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 12px 0 20px;
+            padding: 10px 12px;
+            background: var(--bg-card);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .nav-bar a {
+            display: inline-block;
+            padding: 5px 12px;
+            background: rgba(59,130,246,0.1);
+            color: #60a5fa;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .nav-bar a:hover {
+            background: rgba(59,130,246,0.25);
+            transform: translateY(-1px);
+        }
+
+        /* 指标卡片 */
+        .index-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 12px 0;
+        }
+
+        .index-card {
+            background: var(--bg-card);
+            border-radius: 10px;
+            padding: 14px 12px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .index-card .name {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .index-card .value {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .index-card .change {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-top: 2px;
+        }
+
+        .index-card .change.up {
+            color: var(--color-up);
+        }
+
+        .index-card .change.down {
+            color: var(--color-down);
+        }
+
+        .index-card .volume {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* 回到顶部 */
+        .back-top {
+            position: fixed;
+            bottom: 24px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(59,130,246,0.4);
+            display: none;
+            z-index: 100;
+            transition: transform 0.2s;
+        }
+
+        .back-top:hover {
+            transform: scale(1.1);
+        }
+
+        /* 移动端优化 */
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 12px 32px;
+            }
+
+            .header {
+                padding: 24px 16px 20px;
+                margin: 0 -12px 16px;
+            }
+
+            .header h1 {
+                font-size: 1.35rem;
+            }
+
+            h2 {
+                font-size: 1.05rem;
+                padding: 10px 12px;
+                margin: 20px 0 10px;
+            }
+
+            h3 {
+                font-size: 0.95rem;
+            }
+
+            table {
+                font-size: 0.75rem;
+            }
+
+            th, td {
+                padding: 7px 5px;
+            }
+
+            .index-cards {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+
+            .index-card .value {
+                font-size: 1rem;
+            }
+
+            .nav-bar {
+                gap: 5px;
+                padding: 8px 10px;
+            }
+
+            .nav-bar a {
+                padding: 4px 10px;
+                font-size: 0.72rem;
+            }
+        }
+
+        /* 宽屏优化 */
+        @media (min-width: 768px) {
+            body {
+                font-size: 16px;
+            }
+
+            .container {
+                padding: 0 24px 48px;
+            }
+
+            .header {
+                padding: 40px 32px 28px;
+                margin: 0 -24px 24px;
+            }
+
+            .header h1 {
+                font-size: 1.9rem;
+            }
+
+            .index-cards {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>A股晨间分析日报</h1>
+            <div class="date">2026年04月30日</div>
+        </div>
+
+        <nav class="nav-bar">
+            <a href="#section-1">大盘概览</a>
+            <a href="#section-2">热门板块</a>
+            <a href="#section-3">资金动向</a>
+            <a href="#section-4">潜力股</a>
+            <a href="#section-5">个股策略</a>
+            <a href="#section-6">风险提示</a>
+        </nav>
+
+        <div id="report-content">
+<h1>📊 A股市场晨间分析报告</h1>
+<p><strong>2026年4月30日（周三盘前）| 基于4月29日收盘数据</strong></p>
+<blockquote>⚠️ 本报告为研究分析用途，所有个股推荐均为研究推荐/仅供参考，不构成任何投资建议。股市有风险，投资需谨慎。</blockquote>
+<hr>
+<h2>一、大盘概览</h2>
+<p>4月29日A股三大指数低开高走集体收涨，沪指成功收复4100点，创业板指大涨超2.5%结束四连阴。锂电稀土新能源全线爆发，市场呈现普涨格局。</p>
+<div class="table-wrap"><table>
+  <thead><tr><th>指数</th><th>收盘点位</th><th>涨跌幅</th><th>成交额</th><th>趋势简述</th></tr></thead>
+  <tbody>
+    <tr><td>上证指数</td><td>4107.51</td><td><span class="up">+0.71%</span></td><td>—</td><td>重返4100点，低开高走收阳</td></tr>
+    <tr><td>深证成指</td><td>15120.92</td><td><span class="up">+1.96%</span></td><td>—</td><td>强势反弹，收复15000点</td></tr>
+    <tr><td>创业板指</td><td>3687.17</td><td><span class="up">+2.52%</span></td><td>—</td><td>结束四连阴，放量大涨领涨</td></tr>
+    <tr><td>科创50</td><td>1493.50</td><td><span class="up">+0.33%</span></td><td>—</td><td>小幅收涨，弱于主板</td></tr>
+  </tbody>
+</table></div>
+<p><strong>全市场成交额</strong>：26089亿元，较上一交易日放量584亿元，连续第16个交易日突破2万亿。</p>
+<p><strong>涨跌家数</strong>：上涨3973只 / 下跌1403只，普涨格局明显。</p>
+<p><strong>涨停/跌停</strong>：119只涨停 / 39只跌停，涨停家数大幅回升。</p>
+<p><strong>市场情绪</strong>：偏多。新能源主线全面爆发，资金回流成长板块，但节前最后交易日需警惕获利回吐。</p>
+<hr>
+<h2>二、热门板块分析</h2>
+<h3>🔥 涨幅前五板块</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>排名</th><th>板块名称</th><th>涨幅</th><th>领涨龙头</th><th>上涨驱动分析</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>小金属（稀土+钨）</td><td><span class="up">+6.82%</span></td><td>中钨高新(涨停)、北方稀土(涨停)</td><td>自然资源部公布新一轮找矿突破战略行动成果+中国稀土一季报净利润同比增90.8%+稀土产品涨价，供需格局改善</td></tr>
+    <tr><td>2</td><td>电池（锂电）</td><td><span class="up">+5.19%</span></td><td>鹏辉能源(20CM涨停)、德方纳米(20CM涨停)</td><td>碳酸锂价格企稳回升+储能需求爆发+政治局会议强调新能源转型，电池板块资金净流入73.6亿</td></tr>
+    <tr><td>3</td><td>能源金属</td><td><span class="up">+4.94%</span></td><td>融捷股份(涨停)、天华新能(<span class="up">+18.83%</span>)</td><td>锂矿资源价值重估+锂价底部确认，板块资金净流入28.9亿，5日资金持续净流入</td></tr>
+    <tr><td>4</td><td>酒店餐饮</td><td><span class="up">+4.85%</span></td><td>首旅酒店(<span class="up">+8.68%</span>)</td><td>五一假期出行预期+消费数据回暖，旅游酒店板块节前资金博弈</td></tr>
+    <tr><td>5</td><td>广告营销</td><td><span class="up">+4.17%</span></td><td>三人行(涨停)</td><td>AI营销概念+数字广告行业景气度提升</td></tr>
+  </tbody>
+</table></div>
+<h3>📉 跌幅前五板块</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>排名</th><th>板块名称</th><th>跌幅</th><th>回调原因</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>厨卫家电</td><td>约<span class="down">-1.5%</span></td><td>地产链承压+消费降级担忧，资金流出传统消费</td></tr>
+    <tr><td>2</td><td>小家电</td><td>约<span class="down">-1.3%</span></td><td>同属地产后周期，需求疲软叠加出口不确定性</td></tr>
+    <tr><td>3</td><td>减肥药</td><td>约<span class="down">-1.2%</span></td><td>前期涨幅较大，获利盘出逃，ASCO年会前资金兑现</td></tr>
+    <tr><td>4</td><td>电子化学品</td><td>约<span class="down">-1.0%</span></td><td>华特气体领跌，前期涨幅过大+半导体资金流出82亿</td></tr>
+    <tr><td>5</td><td>工业气体</td><td>约<span class="down">-0.9%</span></td><td>与电子化学品联动下跌，板块轮动资金撤离</td></tr>
+  </tbody>
+</table></div>
+<hr>
+<h2>三、资金动向分析</h2>
+<h3>今日主力资金主要流入方向</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>方向</th><th>净流入金额</th><th>说明</th></tr></thead>
+  <tbody>
+    <tr><td>储能概念</td><td>约160亿元</td><td>新能源赛道核心，政策+业绩双驱动</td></tr>
+    <tr><td>小金属（稀土等）</td><td>约132.9亿元</td><td>稀土涨价+战略资源价值重估</td></tr>
+    <tr><td>固态电池</td><td>约118.2亿元</td><td>新一代电池技术突破预期</td></tr>
+    <tr><td>电池板块</td><td>约74.27亿元</td><td>锂电产业链整体资金回流</td></tr>
+    <tr><td>有色金属</td><td>净流入靠前</td><td>稀土+锂矿双轮驱动</td></tr>
+  </tbody>
+</table></div>
+<h3>主力资金主要流出方向</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>方向</th><th>净流出金额</th><th>说明</th></tr></thead>
+  <tbody>
+    <tr><td>半导体</td><td>约-82.29亿元</td><td>前期获利盘出逃+美股半导体下跌拖累</td></tr>
+    <tr><td>消费电子</td><td>净流出</td><td>缺乏催化，资金转向新能源</td></tr>
+    <tr><td>银行</td><td>净流出</td><td>招商银行跌2.78%拖累板块</td></tr>
+  </tbody>
+</table></div>
+<h3>近期资金趋势</h3>
+<ul>
+<li><strong>近一周</strong>：主力资金从半导体/科技板块转向新能源/有色/稀土板块，新能源赛道成为资金新主线</li>
+<li><strong>近半月</strong>：锂电产业链持续获得资金关注，储能+固态电池概念反复活跃</li>
+<li><strong>近一月</strong>：市场整体维持高成交量（2万亿+），资金在科技与新能源之间轮动</li>
+</ul>
+<h3>个股资金亮点</h3>
+<ul>
+<li><strong>北方稀土</strong>：主力净流入28.9亿元，全市场排名第1，特大单净流入33.5亿</li>
+<li><strong>宁德时代</strong>：主力净流入15.4亿元，融资余额235亿，深股通大幅加仓</li>
+<li><strong>天赐材料</strong>：龙虎榜净买入2.69亿元，深股通买入9.16亿/卖出5.20亿，机构买入超4亿</li>
+</ul>
+<hr>
+<h2>四、技术形态潜力股</h2>
+<p>基于4月29日收盘技术数据筛选：股价站上5日/20日均线、MACD金叉或转强、KDJ超买区钝化或有金叉信号。</p>
+<div class="table-wrap"><table>
+  <thead><tr><th>序号</th><th>股票名称</th><th>收盘价</th><th>入选理由</th><th>建议入场区间</th><th>止损位</th><th>预计两周目标涨幅</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td><strong>天赐材料</strong>(002709)</td><td>59.32</td><td>MACD金叉(DIF=2.90>DEA=1.98)+站上5/10/20日均线+KDJ高位钝化(K=85.76)+龙虎榜机构净买入，锂电电解液龙头</td><td>55-58元</td><td>50元(20日线下方)</td><td>10<span class="down">-15%</span></td></tr>
+    <tr><td>2</td><td><strong>宁德时代</strong>(300750)</td><td>445.00</td><td>MACD持续走强(DIF=14.34>DEA=14.21)+站上所有短中期均线+特大单净流入21.6亿+储能龙头地位</td><td>430-440元</td><td>410元(5日线下方)</td><td>8<span class="down">-12%</span></td></tr>
+    <tr><td>3</td><td><strong>恩捷股份</strong>(002812)</td><td>84.47</td><td>MACD金叉(DIF=3.57>DEA=2.48)+红柱放大+站上5/10/20日均线+锂电隔膜龙头+KDJ金叉(K=78.22)</td><td>79-82元</td><td>74元(20日线附近)</td><td>10<span class="down">-15%</span></td></tr>
+    <tr><td>4</td><td><strong>杉杉股份</strong>(600884)</td><td>16.90</td><td>MACD金叉(DIF=0.56>DEA=0.36)+站上5/10/20日均线+锂电负极材料龙头+VR=179量能充足</td><td>15.5-16.5元</td><td>14.0元(20日线下方)</td><td>12<span class="down">-18%</span></td></tr>
+    <tr><td>5</td><td><strong>中际旭创</strong>(300308)</td><td>846.00</td><td>MACD持续走强(DIF=67.99>DEA=67.38)+站上所有均线+CPO光模块龙头+市值破万亿+AI算力长期逻辑</td><td>810-840元</td><td>760元(20日线附近)</td><td>8<span class="down">-12%</span></td></tr>
+  </tbody>
+</table></div>
+<blockquote>⚠️ 以上均为技术面筛选的研究推荐/仅供参考，不构成投资建议。入场前请结合当日盘口和消息面综合判断。</blockquote>
+<hr>
+<h2>五、个股推荐与策略</h2>
+<p>结合4月29日市场主线（新能源+稀土+有色）和4月30日盘前消息面，推荐以下5只个股：</p>
+<h3>1. 🌟 天赐材料（002709）— 激进型 | 锂电主线龙头</h3>
+<ul>
+<li><strong>推荐理由</strong>：锂电电解液全球龙头，MACD金叉+涨停突破，龙虎榜机构+深股通大额净买入，量价配合完美</li>
+<li><strong>操作策略</strong>：节前若低开至55-58元区间可轻仓布局，节后确认趋势再加仓</li>
+<li><strong>止盈位</strong>：68-70元（前高区域）</li>
+<li><strong>止损位</strong>：50元（20日均线下方）</li>
+<li><strong>建议仓位</strong>：2成</li>
+</ul>
+<h3>2. 🌟 北方稀土（600111）— 稳健型 | 稀土涨价龙头</h3>
+<ul>
+<li><strong>推荐理由</strong>：稀土龙头涨停，一季报净利润同比增90.8%，自然资源部找矿突破利好，主力净流入28.9亿全市场第一</li>
+<li><strong>操作策略</strong>：回调至47-49元区间低吸，不追涨停板</li>
+<li><strong>止盈位</strong>：56-58元</li>
+<li><strong>止损位</strong>：44元（60日线下方）</li>
+<li><strong>建议仓位</strong>：2成</li>
+</ul>
+<h3>3. 🌟 宁德时代（300750）— 稳健型 | 储能+电池双龙头</h3>
+<ul>
+<li><strong>推荐理由</strong>：全球动力电池+储能龙头，MACD持续走强，特大单净流入21.6亿，融资余额235亿，机构重仓</li>
+<li><strong>操作策略</strong>：425-440元分批低吸，中长期持有</li>
+<li><strong>止盈位</strong>：480-500元</li>
+<li><strong>止损位</strong>：410元</li>
+<li><strong>建议仓位</strong>：2成</li>
+</ul>
+<h3>4. 🌟 恩捷股份（002812）— 激进型 | 锂电隔膜龙头</h3>
+<ul>
+<li><strong>推荐理由</strong>：锂电隔膜全球市占率第一，MACD金叉红柱放大，KDJ金叉确认，锂电产业链整体资金回流</li>
+<li><strong>操作策略</strong>：79-82元低吸，短线波段</li>
+<li><strong>止盈位</strong>：95-100元</li>
+<li><strong>止损位</strong>：74元</li>
+<li><strong>建议仓位</strong>：1.5成</li>
+</ul>
+<h3>5. 🌟 中际旭创（300308）— 中长期型 | AI算力核心</h3>
+<ul>
+<li><strong>推荐理由</strong>：CPO光模块全球龙头，市值突破万亿，AI算力长期逻辑不变，政治局会议"人工智能+"政策支撑</li>
+<li><strong>操作策略</strong>：810-840元区间逢低布局，中长期持有</li>
+<li><strong>止盈位</strong>：950-1000元</li>
+<li><strong>止损位</strong>：760元</li>
+<li><strong>建议仓位</strong>：1.5成</li>
+</ul>
+<blockquote>⚠️ 以上推荐均为研究推荐/仅供参考，不构成投资建议。4月30日为五一节前最后交易日，仓位控制尤为重要。</blockquote>
+<hr>
+<h2>六、风险提示与操作建议</h2>
+<h3>⚠️ 风险提示</h3>
+<p>1. <strong>节前最后一日</strong>：4月30日是五一假期前最后一个交易日，5月1日-5日休市5天。假期期间外围市场不确定性大，节前资金可能获利了结离场。</p>
+<p>2. <strong>美联储FOMC决议</strong>：北京时间4月30日凌晨2点公布利率决议（维持不变概率近100%），但鲍威尔措辞的鹰鸽倾向将直接影响全球风险偏好。</p>
+<p>3. <strong>美股隔夜下跌</strong>：4月29日美股三大指数集体收跌，贵金属与半导体板块跌幅居前，马斯克诉OpenAI案索赔1500亿美元可能冲击AI产业链。</p>
+<p>4. <strong>一季报收官风险</strong>：4月30日为一季报最后披露日，五粮液延期至4月30日收市后发布年报+一季报（董事长涉违纪被留置），25家非ST公司集中发布退市风险公告，14家公司被实施ST/*ST。</p>
+<p>5. <strong>霍尔木兹海峡局势</strong>：阿联酋宣布5月1日退出OPEC+，油价逼近100美元/桶，中东局势对全球制造业成本端构成持续压力。</p>
+<p>6. <strong>证监会人事变动</strong>：刘浩凌任证监会副主席，"一正四副"架构补齐，短期监管态度可能趋严。</p>
+<h3>📊 建议仓位</h3>
+<p><strong>总体建议仓位：4-5成（偏谨慎）</strong></p>
+<ul>
+<li>当前成交额2.61万亿维持高位，涨跌家数比3973:1403偏多，市场做多情绪高涨</li>
+<li>但考虑到：①五一长假5天休市，外围不确定性大；②一季报最后一天爆雷风险高；③美股隔夜下跌</li>
+<li><strong>操作建议</strong>：已持仓者可持4成仓位过节（以新能源/稀土主线为主），空仓者不建议节前开新仓，等待节后确认方向再入场</li>
+<li><strong>回避</strong>：ST/*ST板块、一季报业绩不及预期个股、前期涨幅过大的电子化学品/工业气体</li>
+</ul>
+<hr>
+<p>*数据来源：东方财富、腾讯自选股、新浪财经、淘股吧、证券时报*</p>
+<p>*报告生成时间：2026年4月30日 08:20*</p>
+<p>*本报告由自动化系统生成，所有数据均来自公开市场信息，不构成投资建议*</p>
+        </div>
+
+        <div class="footer">
+            <p>⚠️ 本报告仅供研究参考，不构成投资建议。投资有风险，入市需谨慎。</p>
+            <p style="margin-top:4px;">数据来源：东方财富网 · 妙想API ｜ 自动生成</p>
+        </div>
+    </div>
+
+    <button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+    <script>
+        // 给 h2 添加 id 用于锚点导航
+        document.querySelectorAll('h2').forEach((h2, i) => {
+            h2.id = 'section-' + (i + 1);
+        });
+
+        // 回到顶部按钮
+        window.addEventListener('scroll', () => {
+            const btn = document.getElementById('backTop');
+            btn.style.display = window.scrollY > 300 ? 'block' : 'none';
+        });
+    </script>
+</body>
+</html>
