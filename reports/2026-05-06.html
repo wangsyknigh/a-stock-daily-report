@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>A股晨间分析日报 - 2026年05月06日</title>
+    <style>
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-card: #1e293b;
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --accent-cyan: #06b6d4;
+            --color-up: #ef4444;
+            --color-down: #22c55e;
+            --border-color: #334155;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            font-size: 15px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 16px 40px;
+        }
+
+        /* 顶部头图区域 */
+        .header {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2d1b69 50%, #1a1a2e 100%);
+            padding: 32px 20px 24px;
+            margin: 0 -16px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(59,130,246,0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 50%, rgba(139,92,246,0.1) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1) rotate(0deg); }
+            100% { transform: scale(1.1) rotate(3deg); }
+        }
+
+        .header h1 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #60a5fa, #a78bfa, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            margin-bottom: 8px;
+        }
+
+        .header .date {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            position: relative;
+        }
+
+        .header .update-time {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            position: relative;
+            margin-top: 4px;
+        }
+
+        /* 卡片样式 */
+        h2 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 24px 0 12px;
+            padding: 12px 16px;
+            background: linear-gradient(135deg, rgba(59,130,246,0.12), rgba(139,92,246,0.08));
+            border-left: 3px solid var(--accent-blue);
+            border-radius: 0 8px 8px 0;
+        }
+
+        h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 16px 0 8px;
+            padding: 8px 12px;
+            background: rgba(59,130,246,0.06);
+            border-radius: 6px;
+        }
+
+        h1 {
+            display: none; /* 隐藏MD中的顶级标题，用header替代 */
+        }
+
+        /* 段落 */
+        p {
+            margin: 8px 0;
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+        }
+
+        /* 表格 */
+        .table-wrap {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 12px 0;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            background: var(--bg-card);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        thead {
+            background: linear-gradient(135deg, rgba(59,130,246,0.2), rgba(139,92,246,0.15));
+        }
+
+        th {
+            padding: 10px 8px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-primary);
+            white-space: nowrap;
+            font-size: 0.82rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        td {
+            padding: 9px 8px;
+            border-bottom: 1px solid rgba(51,65,85,0.5);
+            color: var(--text-secondary);
+            font-size: 0.82rem;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover {
+            background: rgba(59,130,246,0.05);
+        }
+
+        /* 涨跌颜色 */
+        .up {
+            color: var(--color-up);
+            font-weight: 600;
+        }
+
+        .down {
+            color: var(--color-down);
+            font-weight: 600;
+        }
+
+        /* 引用块 */
+        blockquote {
+            margin: 12px 0;
+            padding: 12px 16px;
+            background: rgba(234,179,8,0.08);
+            border-left: 3px solid #eab308;
+            border-radius: 0 6px 6px 0;
+            color: #fbbf24;
+            font-size: 0.88rem;
+            line-height: 1.6;
+        }
+
+        /* 列表 */
+        ul {
+            margin: 8px 0;
+            padding-left: 20px;
+        }
+
+        li {
+            margin: 6px 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* 水平线 */
+        hr {
+            border: none;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+            margin: 20px 0;
+        }
+
+        /* 强调文字 */
+        strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* 底部免责声明 */
+        .footer {
+            margin-top: 32px;
+            padding: 16px;
+            background: rgba(239,68,68,0.06);
+            border: 1px solid rgba(239,68,68,0.15);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .footer p {
+            color: var(--text-muted);
+            font-size: 0.78rem;
+            line-height: 1.6;
+        }
+
+        /* 快捷导航 */
+        .nav-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 12px 0 20px;
+            padding: 10px 12px;
+            background: var(--bg-card);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .nav-bar a {
+            display: inline-block;
+            padding: 5px 12px;
+            background: rgba(59,130,246,0.1);
+            color: #60a5fa;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .nav-bar a:hover {
+            background: rgba(59,130,246,0.25);
+            transform: translateY(-1px);
+        }
+
+        /* 指标卡片 */
+        .index-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 12px 0;
+        }
+
+        .index-card {
+            background: var(--bg-card);
+            border-radius: 10px;
+            padding: 14px 12px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .index-card .name {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .index-card .value {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .index-card .change {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-top: 2px;
+        }
+
+        .index-card .change.up {
+            color: var(--color-up);
+        }
+
+        .index-card .change.down {
+            color: var(--color-down);
+        }
+
+        .index-card .volume {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* 回到顶部 */
+        .back-top {
+            position: fixed;
+            bottom: 24px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(59,130,246,0.4);
+            display: none;
+            z-index: 100;
+            transition: transform 0.2s;
+        }
+
+        .back-top:hover {
+            transform: scale(1.1);
+        }
+
+        /* 移动端优化 */
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 12px 32px;
+            }
+
+            .header {
+                padding: 24px 16px 20px;
+                margin: 0 -12px 16px;
+            }
+
+            .header h1 {
+                font-size: 1.35rem;
+            }
+
+            h2 {
+                font-size: 1.05rem;
+                padding: 10px 12px;
+                margin: 20px 0 10px;
+            }
+
+            h3 {
+                font-size: 0.95rem;
+            }
+
+            table {
+                font-size: 0.75rem;
+            }
+
+            th, td {
+                padding: 7px 5px;
+            }
+
+            .index-cards {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+
+            .index-card .value {
+                font-size: 1rem;
+            }
+
+            .nav-bar {
+                gap: 5px;
+                padding: 8px 10px;
+            }
+
+            .nav-bar a {
+                padding: 4px 10px;
+                font-size: 0.72rem;
+            }
+        }
+
+        /* 宽屏优化 */
+        @media (min-width: 768px) {
+            body {
+                font-size: 16px;
+            }
+
+            .container {
+                padding: 0 24px 48px;
+            }
+
+            .header {
+                padding: 40px 32px 28px;
+                margin: 0 -24px 24px;
+            }
+
+            .header h1 {
+                font-size: 1.9rem;
+            }
+
+            .index-cards {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>A股晨间分析日报</h1>
+            <div class="date">2026年05月06日</div>
+        </div>
+
+        <nav class="nav-bar">
+            <a href="#section-1">大盘概览</a>
+            <a href="#section-2">热门板块</a>
+            <a href="#section-3">资金动向</a>
+            <a href="#section-4">潜力股</a>
+            <a href="#section-5">个股策略</a>
+            <a href="#section-6">风险提示</a>
+        </nav>
+
+        <div id="report-content">
+<h1>A股晨间分析报告 | 2026年5月6日（节后开市展望专刊）</h1>
+<blockquote>📅 今日A股节后首个交易日（5/1-5/5休市，5/6周三恢复交易）。本报告基于4/30收盘数据、假期全球市场变化、AMD重磅财报及最新地缘动态，为今日开市提供决策参考。报告撰写时市场尚未开盘（9:30开），盘中数据待更新。</blockquote>
+<hr>
+<h2>一、大盘概览</h2>
+<h3>节前收盘（4月30日）</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>指数</th><th>收盘点位</th><th>日涨跌幅</th><th>4月涨幅</th><th>成交额</th><th>趋势简述</th></tr></thead>
+  <tbody>
+    <tr><td><strong>上证指数</strong></td><td>4112.16</td><td><span class="up">+0.11%</span></td><td><span class="up">+6.82%</span></td><td>—</td><td>窄幅震荡，守住4100关口</td></tr>
+    <tr><td><strong>深证成指</strong></td><td>15107.55</td><td><span class="down">-0.09%</span></td><td><span class="up">+8.15%</span></td><td>—</td><td>微跌收官，4月表现稳健</td></tr>
+    <tr><td><strong>创业板指</strong></td><td>3677.15</td><td><span class="down">-0.27%</span></td><td><strong><span class="up">+15.45%</span></strong>（十年新高）</td><td>—</td><td>月度创十年新高，短期高位盘整</td></tr>
+    <tr><td><strong>科创50</strong></td><td>1571.07</td><td><strong><span class="up">+5.19%</span></strong></td><td><strong><span class="up">+25.05%</span></strong></td><td>—</td><td>4月最强指数，算力芯片全线爆发</td></tr>
+    <tr><td><strong>全市场</strong></td><td>—</td><td>—</td><td>—</td><td><strong>2.76万亿</strong>（放量1504亿）</td><td>连续17日突破2万亿</td></tr>
+  </tbody>
+</table></div>
+<p><strong>个股涨跌</strong>：2907只上涨 / 2503只下跌 | 涨跌比约1.16:1</p>
+<h3>假期全球市场变化</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>市场</th><th>最新收盘</th><th>涨跌幅</th><th>关键信号</th></tr></thead>
+  <tbody>
+    <tr><td><strong>道琼斯</strong>（5/5）</td><td>大涨约350点</td><td>≈<span class="up">+0.7%</span></td><td>反弹收复5/4跌幅</td></tr>
+    <tr><td><strong>标普500</strong>（5/5）</td><td>历史新高</td><td>—</td><td>科技股领涨，突破前高</td></tr>
+    <tr><td><strong>纳斯达克</strong>（5/5）</td><td>历史新高</td><td>—</td><td>AMD盘后财报超预期</td></tr>
+    <tr><td><strong>恒生指数</strong>（5/5）</td><td>25898.61</td><td><span class="down">-0.76%</span></td><td>受中东拖累，但半导体逆势走强</td></tr>
+    <tr><td><strong>恒生科技</strong>（5/5）</td><td>4929.68</td><td><span class="down">-0.94%</span></td><td>大模型/芯片板块回调</td></tr>
+    <tr><td><strong>富时A50期货</strong></td><td>—</td><td>震荡上行</td><td>外资提前布局A股节后修复</td></tr>
+    <tr><td><strong>布伦特原油</strong>（5/5）</td><td>~112美元</td><td><span class="up">+5.80%</span>（5/4）→小幅回调</td><td>中东冲突推升油价</td></tr>
+    <tr><td><strong>COMEX黄金</strong>（5/5）</td><td>~4527美元</td><td><span class="down">-2.53%</span></td><td>避险资产遭抛售，资金回流股市</td></tr>
+  </tbody>
+</table></div>
+<h3>今日开市关键变量</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>变量</th><th>内容</th><th>影响方向</th></tr></thead>
+  <tbody>
+    <tr><td>🔴 <strong>中东冲突升级</strong></td><td>伊朗警告射击美舰→美军击沉6艘伊朗船→阿联酋遭袭→特朗普"迷你战争"言论</td><td>⚠️ 利空大盘，利好石油/军工</td></tr>
+    <tr><td>🟢 <strong>AMD财报超预期</strong></td><td>Q1营收$102.5亿(<span class="up">+38%</span>)，数据中心<span class="up">+57%</span>，Q2指引<span class="up">+46%</span></td><td>✅ 强力利好AI/半导体</td></tr>
+    <tr><td>🟢 <strong>央行3000亿逆回购</strong></td><td>5/6开展3000亿元买断式逆回购（91天），叠加降准万亿资金</td><td>✅ 流动性全面托底</td></tr>
+    <tr><td>🟢 <strong>历史规律</strong></td><td>近5年五一节后首日上涨概率80%，2024-2025均涨超1%</td><td>✅ 统计偏多</td></tr>
+    <tr><td>🟡 <strong>退市新规</strong></td><td>4月单月新增ST 69家创峰值，劣币加速出清</td><td>➡️ 利好龙头，利空小盘垃圾股</td></tr>
+    <tr><td>🔴 <strong>油价飙升</strong></td><td>布伦特~114美元，霍尔木兹海峡近乎关闭</td><td>⚠️ 输入性通胀压力</td></tr>
+  </tbody>
+</table></div>
+<hr>
+<h2>二、热门板块分析</h2>
+<h3>预估涨幅前五板块</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>排名</th><th>板块</th><th>预估涨幅</th><th>驱动逻辑</th><th>领涨龙头</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td><strong>半导体/存储芯片</strong></td><td>⬆️⬆️⬆️</td><td>AMD财报超预期+全产业链涨价潮+科创50一季报<span class="up">+207%</span></td><td>寒武纪、中微公司、北方华创</td></tr>
+    <tr><td>2</td><td><strong>石油石化</strong></td><td>⬆️⬆️⬆️</td><td>布伦特飙至114美元+霍尔木兹海峡近乎关闭+成品油5/8调价</td><td>中国海油、中国石油、中国石化</td></tr>
+    <tr><td>3</td><td><strong>军工/国防</strong></td><td>⬆️⬆️</td><td>美伊"迷你战争"升级+地缘风险溢价+商业航天催化</td><td>中航沈飞、航发动力、中航光电</td></tr>
+    <tr><td>4</td><td><strong>AI算力/光模块</strong></td><td>⬆️⬆️</td><td>AMD数据中心<span class="up">+57%</span>+Meta 6GW部署+存储芯片涨价</td><td>中际旭创、新易盛、天孚通信</td></tr>
+    <tr><td>5</td><td><strong>被动元件</strong></td><td>⬆️</td><td>全线涨价潮（国巨+15<span class="down">-20%</span>/松下+15<span class="down">-30%</span>/TE两轮涨价）</td><td>顺络电子、风华高科、三环集团</td></tr>
+  </tbody>
+</table></div>
+<p><strong>核心逻辑</strong>：假期三大催化剂——①AMD超预期验证AI景气；②中东冲突推升油价和军工需求；③半导体涨价潮5月进入"深水区"（武汉芯源5/6起调价、联电7月涨10<span class="down">-15%</span>、信越化学5/1起涨≥10%）</p>
+<h3>预估跌幅前五板块</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>排名</th><th>板块</th><th>预估跌幅</th><th>回调原因</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td><strong>黄金/贵金属</strong></td><td>⬇️⬇️</td><td>COMEX黄金<span class="down">-2.53%</span>，避险情绪从黄金转向股市</td></tr>
+    <tr><td>2</td><td><strong>旅游/酒店</strong></td><td>⬇️</td><td>五一出行数据"量升价平"，消费降级预期</td></tr>
+    <tr><td>3</td><td><strong>白酒</strong></td><td>⬇️</td><td>港股消费板块承压，机构建议先观望情绪面冲击</td></tr>
+    <tr><td>4</td><td><strong>房地产</strong></td><td>⬇️</td><td>退市新规加速劣质出清，地产链持续承压</td></tr>
+    <tr><td>5</td><td><strong>纺织服装</strong></td><td>⬇️</td><td>出口关税风险（特朗普对欧盟汽车25%关税外溢效应）</td></tr>
+  </tbody>
+</table></div>
+<hr>
+<h2>三、资金动向分析</h2>
+<h3>主力资金预判方向</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>时间维度</th><th>主要流入方向</th><th>逻辑</th></tr></thead>
+  <tbody>
+    <tr><td><strong>今日</strong></td><td>半导体/AI算力 > 石油石化 > 军工</td><td>AMD财报催化+油价飙升+地缘溢价</td></tr>
+    <tr><td><strong>近一周</strong></td><td>半导体设备 > 存储芯片 > 光模块 > 新能源</td><td>半导体涨价潮扩散+科创50一季报验证+央行逆回购释放流动性</td></tr>
+    <tr><td><strong>近半月</strong></td><td>AI硬件产业链 > 有色金属 > 新能源 > 券商</td><td>科技主线延续+有色金属受益美元走弱+券商低估值修复</td></tr>
+    <tr><td><strong>近一月</strong></td><td>半导体 > AI应用 > 能源安全 > 消费修复</td><td>5月科技+周期占优（七大券商共识）+退市新规利好龙头</td></tr>
+  </tbody>
+</table></div>
+<h3>流动性关键数据</h3>
+<ul>
+<li><strong>央行5/6操作</strong>：3000亿元买断式逆回购（91天），覆盖整个Q2</li>
+<li><strong>叠加效应</strong>：节前降准释放万亿长期增量资金</li>
+<li><strong>⚠️ 风险点</strong>：5/6单日到期7929亿元，3M买断式回购净回笼5000亿，关注资金面压力</li>
+<li><strong>5月8日</strong>：国内成品油年内第九轮调价窗口</li>
+</ul>
+<hr>
+<h2>四、技术形态潜力股</h2>
+<blockquote>⚠️ 以下为基于技术面+基本面的研究推荐，仅供参考，不构成投资建议。所有策略价格需以盘中实际价格验证。</blockquote>
+<div class="table-wrap"><table>
+  <thead><tr><th>股票</th><th>代码</th><th>入选理由</th><th>建议入场区间</th><th>止损位</th><th>预计两周目标涨幅</th></tr></thead>
+  <tbody>
+    <tr><td><strong>中微公司</strong></td><td>688012</td><td>半导体设备龙头，4月涨逾40%趋势完好，5月涨价潮+AMD扩产催化，站上5/20日均线</td><td>340-360元</td><td>315元（<span class="down">-8%</span>）</td><td><span class="up">+12%</span>~18%</td></tr>
+    <tr><td><strong>中国海油</strong></td><td>600938</td><td>布伦特114美元直接受益，4/30收39.99元，油价每涨10美元增利约200亿，站上所有短期均线</td><td>39.0-41.0元</td><td>37.5元（<span class="down">-6%</span>）</td><td><span class="up">+10%</span>~15%</td></tr>
+    <tr><td><strong>顺络电子</strong></td><td>002138</td><td>被动元件涨价核心标的，电感/磁珠1月已涨价，5月第二轮预期，成交量温和放大</td><td>38.0-41.0元</td><td>36.0元（<span class="down">-8%</span>）</td><td><span class="up">+8%</span>~15%</td></tr>
+    <tr><td><strong>北方华创</strong></td><td>002371</td><td>半导体设备+晶圆代工涨价双受益，科创50权重，一季报超预期，MACD金叉</td><td>280-300元</td><td>260元（<span class="down">-8%</span>）</td><td><span class="up">+10%</span>~16%</td></tr>
+    <tr><td><strong>新洁能</strong></td><td>605111</td><td>MOSFET涨价≥10%，功率半导体需求景气，4月涨幅相对滞后有补涨空间</td><td>48.0-52.0元</td><td>45.0元（<span class="down">-8%</span>）</td><td><span class="up">+8%</span>~12%</td></tr>
+  </tbody>
+</table></div>
+<p><strong>选股逻辑说明</strong>：</p>
+<p>1. 中微公司/北方华创：半导体设备"双龙头"，5月半导体涨价潮从IC设计→设备端传导</p>
+<p>2. 中国海油：油价飙升最直接受益标的，霍尔木兹海峡局势短期内难缓解</p>
+<p>3. 顺络电子：被动元件涨价链，1月已调价+5月预期第二轮</p>
+<p>4. 新洁能：MOSFET明确涨价≥10%，功率半导体需求稳健</p>
+<blockquote>⚠️ <strong>重要提示</strong>：妙想API选股价格不可靠（已知偏差可达1-2倍），以上入场区间基于4/30收盘价+技术面推算，实际操作务必以今日盘中实时价格验证后再决策！</blockquote>
+<hr>
+<h2>五、个股推荐与策略</h2>
+<blockquote>以下为研究推荐，仅供参考，不构成投资建议。推荐侧重策略说明。</blockquote>
+<h3>1. 🟢 中微公司（688012）— 半导体设备核心</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>项目</th><th>内容</th></tr></thead>
+  <tbody>
+    <tr><td><strong>投资风格</strong></td><td>成长型</td></tr>
+    <tr><td><strong>核心逻辑</strong></td><td>刻蚀设备龙头+AMD扩产催化+科创50权重+半导体涨价潮设备端受益</td></tr>
+    <tr><td><strong>建议仓位</strong></td><td>2成</td></tr>
+    <tr><td><strong>操作策略</strong></td><td>今日若低开（受港股拖累）可在340-350区间建仓1成；若高开不追，等回踩5日均线再加仓</td></tr>
+    <tr><td><strong>止盈位</strong></td><td>410元（<span class="up">+18%</span>左右）</td></tr>
+    <tr><td><strong>止损位</strong></td><td>315元（<span class="down">-8%</span>）</td></tr>
+  </tbody>
+</table></div>
+<h3>2. 🟢 中国海油（600938）— 油价飙升受益</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>项目</th><th>内容</th></tr></thead>
+  <tbody>
+    <tr><td><strong>投资风格</strong></td><td>价值+防御型</td></tr>
+    <tr><td><strong>核心逻辑</strong></td><td>布伦特~114美元直接受益+霍尔木兹海峡近乎关闭+成品油5/8调价+高股息</td></tr>
+    <tr><td><strong>建议仓位</strong></td><td>2成</td></tr>
+    <tr><td><strong>操作策略</strong></td><td>今日逢低布局39-41元区间，油价若持续高位可中线持有</td></tr>
+    <tr><td><strong>止盈位</strong></td><td>46元（<span class="up">+15%</span>左右）</td></tr>
+    <tr><td><strong>止损位</strong></td><td>37.5元（<span class="down">-6%</span>）</td></tr>
+  </tbody>
+</table></div>
+<h3>3. 🟡 中航沈飞（600760）— 军工地缘溢价</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>项目</th><th>内容</th></tr></thead>
+  <tbody>
+    <tr><td><strong>投资风格</strong></td><td>事件驱动型</td></tr>
+    <tr><td><strong>核心逻辑</strong></td><td>美伊"迷你战争"升级+军品订单加速+商业航天催化</td></tr>
+    <tr><td><strong>建议仓位</strong></td><td>1.5成</td></tr>
+    <tr><td><strong>操作策略</strong></td><td>地缘冲突短期催化明显，但持续性存疑，快进快出为主</td></tr>
+    <tr><td><strong>止盈位</strong></td><td>短线<span class="up">+10%</span>即可考虑减仓</td></tr>
+    <tr><td><strong>止损位</strong></td><td><span class="down">-7%</span>严格止损</td></tr>
+  </tbody>
+</table></div>
+<h3>4. 🟢 中际旭创（300308）— AI算力光模块龙头</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>项目</th><th>内容</th></tr></thead>
+  <tbody>
+    <tr><td><strong>投资风格</strong></td><td>成长型</td></tr>
+    <tr><td><strong>核心逻辑</strong></td><td>AMD数据中心<span class="up">+57%</span>验证AI景气+Meta 6GW部署+光模块800G/1.6T放量</td></tr>
+    <tr><td><strong>建议仓位</strong></td><td>2成</td></tr>
+    <tr><td><strong>操作策略</strong></td><td>今日若受港股科技下跌拖累回调，可在5日均线附近低吸</td></tr>
+    <tr><td><strong>止盈位</strong></td><td>短线<span class="up">+12%</span></td></tr>
+    <tr><td><strong>止损位</strong></td><td><span class="down">-8%</span></td></tr>
+  </tbody>
+</table></div>
+<h3>5. 🟡 顺络电子（002138）— 被动元件涨价</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>项目</th><th>内容</th></tr></thead>
+  <tbody>
+    <tr><td><strong>投资风格</strong></td><td>稳健成长型</td></tr>
+    <tr><td><strong>核心逻辑</strong></td><td>电感磁珠1月已涨价+5月第二轮预期+AI终端需求拉动+估值相对合理</td></tr>
+    <tr><td><strong>建议仓位</strong></td><td>1.5成</td></tr>
+    <tr><td><strong>操作策略</strong></td><td>38-41元区间分批建仓，中线持有</td></tr>
+    <tr><td><strong>止盈位</strong></td><td>47元（<span class="up">+20%</span>左右）</td></tr>
+    <tr><td><strong>止损位</strong></td><td>36元（<span class="down">-8%</span>）</td></tr>
+  </tbody>
+</table></div>
+<hr>
+<h2>六、风险提示与操作建议</h2>
+<h3>综合仓位建议</h3>
+<blockquote><strong>建议仓位：五成偏积极</strong>（较5/5展望的"五成偏谨慎"上调一档）</blockquote>
+<div class="table-wrap"><table>
+  <thead><tr><th>情景</th><th>概率</th><th>沪指区间</th><th>操作策略</th></tr></thead>
+  <tbody>
+    <tr><td><strong>乐观</strong>（35%）</td><td>科技爆发+开门红</td><td>4130-4180</td><td>七成仓位，重点半导体/AI+石油</td></tr>
+    <tr><td><strong>中性</strong>（45%）</td><td>高开震荡分化</td><td>4090-4140</td><td>五成仓位，低吸科技+能源</td></tr>
+    <tr><td><strong>悲观</strong>（20%）</td><td>中东拖累低开</td><td>4050-4100</td><td>三成以下，观望为主</td></tr>
+  </tbody>
+</table></div>
+<p><strong>上调理由</strong>：</p>
+<p>1. ✅ 美股5/5强势反弹，标普/纳指双创新高，外盘压力解除</p>
+<p>2. ✅ AMD Q1超预期（营收$102.5亿<span class="up">+38%</span>，Q2指引<span class="up">+46%</span>），AI景气再度确认</p>
+<p>3. ✅ 央行3000亿逆回购今日落地，流动性无忧</p>
+<p>4. ✅ 历史规律偏多（近5年节后首日80%上涨）</p>
+<p>5. ⚠️ 但中东局势仍为最大不确定性，港股5/5收跌，限制上行空间</p>
+<h3>核心风险提示</h3>
+<p>1. <strong>🔴 中东局势</strong>：美伊冲突若进一步升级（如伊朗封锁海峡/美军大规模反击），油价可能飙至120+美元，全球市场将剧烈波动。关注霍尔木兹海峡通航情况</p>
+<p>2. <strong>🟡 资金面压力</strong>：5/6单日到期7929亿元+3M买断式回购净回笼5000亿，虽央行有3000亿逆回购对冲，但需关注实际资金面松紧</p>
+<p>3. <strong>🟡 高位回调风险</strong>：科创50四月<span class="up">+25%</span>，部分半导体个股市盈率已超100倍，短线获利回吐压力不可忽视</p>
+<p>4. <strong>🟡 港股传导</strong>：港股5/5收跌0.76%，大模型/芯片板块回调，可能对A股科技股开盘形成拖累</p>
+<p>5. <strong>🟡 成品油调价</strong>：5/8（周五）24时国内成品油调价窗口，若大幅上调将加剧通胀预期</p>
+<p>6. <strong>🟢 退市新规</strong>：4月新增ST 69家创峰值，避开*ST/ST个股，资金将向龙头集中</p>
+<h3>今日重点时间节点</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>时间</th><th>事件</th><th>关注方向</th></tr></thead>
+  <tbody>
+    <tr><td>9:15-9:25</td><td>集合竞价</td><td>观察高开/低开幅度，半导体/石油竞价强度</td></tr>
+    <tr><td>9:30</td><td>开盘</td><td>沪指4100支撑是否守住</td></tr>
+    <tr><td>盘中</td><td>武汉芯源5/6调价生效</td><td>力源信息（300184）走势</td></tr>
+    <tr><td>盘中</td><td>第四届低空经济博览会</td><td>低空经济概念股异动</td></tr>
+    <tr><td>20:30</td><td>中国4月服务业PMI</td><td>宏观数据影响次日走势</td></tr>
+    <tr><td>夜间</td><td>Lumentum/Coherent/Arm财报周</td><td>光模块/芯片海外验证</td></tr>
+  </tbody>
+</table></div>
+<hr>
+<h3>假期重大事件回顾</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>事件</th><th>时间</th><th>影响</th></tr></thead>
+  <tbody>
+    <tr><td>美伊"迷你战争"升级</td><td>5/4-5/5</td><td>⭐⭐⭐⭐⭐ 油价飙升+军工催化+避险情绪</td></tr>
+    <tr><td>AMD Q1超预期（营收<span class="up">+38%</span>，Q2指引<span class="up">+46%</span>）</td><td>5/5盘后</td><td>⭐⭐⭐⭐⭐ AI/半导体最强催化</td></tr>
+    <tr><td>美股5/5反弹（标普/纳指双创新高）</td><td>5/5</td><td>⭐⭐⭐⭐ 外盘压力解除</td></tr>
+    <tr><td>央行3000亿逆回购</td><td>5/6</td><td>⭐⭐⭐⭐ 流动性托底</td></tr>
+    <tr><td>半导体涨价潮深化</td><td>5月</td><td>⭐⭐⭐⭐ 全产业链涨价蔓延</td></tr>
+    <tr><td>港股5/5收跌</td><td>5/5</td><td>⭐⭐⭐ 科技股拖累</td></tr>
+    <tr><td>国内成品油5/8调价</td><td>5/8</td><td>⭐⭐⭐ 通胀预期</td></tr>
+  </tbody>
+</table></div>
+<hr>
+<blockquote>⚠️ <strong>免责声明</strong>：本报告仅为研究分析，不构成投资建议。市场有风险，投资需谨慎。所有个股推荐为研究参考，非持仓建议。策略价格基于4/30收盘价推算，实际操作请以盘中实时价格为准。</blockquote>
+<blockquote>📊 数据来源：东方财富、新浪财经、同花顺、Investopedia、MarketWatch、雪球、36氪、财联社、券商研报等</blockquote>
+<hr>
+<p>*报告生成时间：2026年5月6日 08:20 | 市场尚未开盘，数据基于4/30收盘及假期全球市场变化*</p>
+        </div>
+
+        <div class="footer">
+            <p>⚠️ 本报告仅供研究参考，不构成投资建议。投资有风险，入市需谨慎。</p>
+            <p style="margin-top:4px;">数据来源：东方财富网 · 妙想API ｜ 自动生成</p>
+        </div>
+    </div>
+
+    <button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+    <script>
+        // 给 h2 添加 id 用于锚点导航
+        document.querySelectorAll('h2').forEach((h2, i) => {
+            h2.id = 'section-' + (i + 1);
+        });
+
+        // 回到顶部按钮
+        window.addEventListener('scroll', () => {
+            const btn = document.getElementById('backTop');
+            btn.style.display = window.scrollY > 300 ? 'block' : 'none';
+        });
+    </script>
+</body>
+</html>
