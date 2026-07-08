@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>A股晨间分析日报 - 2026年07月08日</title>
+    <style>
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-card: #1e293b;
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --accent-cyan: #06b6d4;
+            --color-up: #ef4444;
+            --color-down: #22c55e;
+            --border-color: #334155;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            font-size: 15px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 16px 40px;
+        }
+
+        /* 顶部头图区域 */
+        .header {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2d1b69 50%, #1a1a2e 100%);
+            padding: 32px 20px 24px;
+            margin: 0 -16px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(59,130,246,0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 50%, rgba(139,92,246,0.1) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1) rotate(0deg); }
+            100% { transform: scale(1.1) rotate(3deg); }
+        }
+
+        .header h1 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #60a5fa, #a78bfa, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            margin-bottom: 8px;
+        }
+
+        .header .date {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            position: relative;
+        }
+
+        .header .update-time {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            position: relative;
+            margin-top: 4px;
+        }
+
+        /* 卡片样式 */
+        h2 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 24px 0 12px;
+            padding: 12px 16px;
+            background: linear-gradient(135deg, rgba(59,130,246,0.12), rgba(139,92,246,0.08));
+            border-left: 3px solid var(--accent-blue);
+            border-radius: 0 8px 8px 0;
+        }
+
+        h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 16px 0 8px;
+            padding: 8px 12px;
+            background: rgba(59,130,246,0.06);
+            border-radius: 6px;
+        }
+
+        h1 {
+            display: none; /* 隐藏MD中的顶级标题，用header替代 */
+        }
+
+        /* 段落 */
+        p {
+            margin: 8px 0;
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+        }
+
+        /* 表格 */
+        .table-wrap {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 12px 0;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            background: var(--bg-card);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        thead {
+            background: linear-gradient(135deg, rgba(59,130,246,0.2), rgba(139,92,246,0.15));
+        }
+
+        th {
+            padding: 10px 8px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-primary);
+            white-space: nowrap;
+            font-size: 0.82rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        td {
+            padding: 9px 8px;
+            border-bottom: 1px solid rgba(51,65,85,0.5);
+            color: var(--text-secondary);
+            font-size: 0.82rem;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover {
+            background: rgba(59,130,246,0.05);
+        }
+
+        /* 涨跌颜色 */
+        .up {
+            color: var(--color-up);
+            font-weight: 600;
+        }
+
+        .down {
+            color: var(--color-down);
+            font-weight: 600;
+        }
+
+        /* 引用块 */
+        blockquote {
+            margin: 12px 0;
+            padding: 12px 16px;
+            background: rgba(234,179,8,0.08);
+            border-left: 3px solid #eab308;
+            border-radius: 0 6px 6px 0;
+            color: #fbbf24;
+            font-size: 0.88rem;
+            line-height: 1.6;
+        }
+
+        /* 列表 */
+        ul {
+            margin: 8px 0;
+            padding-left: 20px;
+        }
+
+        li {
+            margin: 6px 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* 水平线 */
+        hr {
+            border: none;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+            margin: 20px 0;
+        }
+
+        /* 强调文字 */
+        strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* 底部免责声明 */
+        .footer {
+            margin-top: 32px;
+            padding: 16px;
+            background: rgba(239,68,68,0.06);
+            border: 1px solid rgba(239,68,68,0.15);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .footer p {
+            color: var(--text-muted);
+            font-size: 0.78rem;
+            line-height: 1.6;
+        }
+
+        /* 快捷导航 */
+        .nav-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 12px 0 20px;
+            padding: 10px 12px;
+            background: var(--bg-card);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .nav-bar a {
+            display: inline-block;
+            padding: 5px 12px;
+            background: rgba(59,130,246,0.1);
+            color: #60a5fa;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .nav-bar a:hover {
+            background: rgba(59,130,246,0.25);
+            transform: translateY(-1px);
+        }
+
+        /* 指标卡片 */
+        .index-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 12px 0;
+        }
+
+        .index-card {
+            background: var(--bg-card);
+            border-radius: 10px;
+            padding: 14px 12px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .index-card .name {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .index-card .value {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .index-card .change {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-top: 2px;
+        }
+
+        .index-card .change.up {
+            color: var(--color-up);
+        }
+
+        .index-card .change.down {
+            color: var(--color-down);
+        }
+
+        .index-card .volume {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* 回到顶部 */
+        .back-top {
+            position: fixed;
+            bottom: 24px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(59,130,246,0.4);
+            display: none;
+            z-index: 100;
+            transition: transform 0.2s;
+        }
+
+        .back-top:hover {
+            transform: scale(1.1);
+        }
+
+        /* 移动端优化 */
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 12px 32px;
+            }
+
+            .header {
+                padding: 24px 16px 20px;
+                margin: 0 -12px 16px;
+            }
+
+            .header h1 {
+                font-size: 1.35rem;
+            }
+
+            h2 {
+                font-size: 1.05rem;
+                padding: 10px 12px;
+                margin: 20px 0 10px;
+            }
+
+            h3 {
+                font-size: 0.95rem;
+            }
+
+            table {
+                font-size: 0.75rem;
+            }
+
+            th, td {
+                padding: 7px 5px;
+            }
+
+            .index-cards {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+
+            .index-card .value {
+                font-size: 1rem;
+            }
+
+            .nav-bar {
+                gap: 5px;
+                padding: 8px 10px;
+            }
+
+            .nav-bar a {
+                padding: 4px 10px;
+                font-size: 0.72rem;
+            }
+        }
+
+        /* 宽屏优化 */
+        @media (min-width: 768px) {
+            body {
+                font-size: 16px;
+            }
+
+            .container {
+                padding: 0 24px 48px;
+            }
+
+            .header {
+                padding: 40px 32px 28px;
+                margin: 0 -24px 24px;
+            }
+
+            .header h1 {
+                font-size: 1.9rem;
+            }
+
+            .index-cards {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>A股晨间分析日报</h1>
+            <div class="date">2026年07月08日</div>
+        </div>
+
+        <nav class="nav-bar">
+            <a href="#section-1">大盘概览</a>
+            <a href="#section-2">热门板块</a>
+            <a href="#section-3">资金动向</a>
+            <a href="#section-4">潜力股</a>
+            <a href="#section-5">个股策略</a>
+            <a href="#section-6">风险提示</a>
+        </nav>
+
+        <div id="report-content">
+<h1>📊 A股每日晨间分析报告 — 2026年7月8日（周三）</h1>
+<blockquote><strong>定性</strong>: 缩量调整+极致分化+算力虹吸+科创独红</blockquote>
+<blockquote><strong>核心特征</strong>: 主板/创业板普跌，科创50逆势收红+0.73%，资金从高位赛道（机器人/锂矿/新能源）系统性撤离，算力全产业链虹吸效应空前</blockquote>
+<blockquote><strong>成交</strong>: 2.56万亿（缩量176亿），连续6日主力净流出（今日519.24亿）</blockquote>
+<hr>
+<h2>一、大盘概览</h2>
+<div class="table-wrap"><table>
+  <thead><tr><th>指数</th><th>收盘点位</th><th>涨跌幅</th><th>成交额</th><th>趋势简述</th></tr></thead>
+  <tbody>
+    <tr><td>上证指数</td><td>3970.88</td><td><span class="down">-0.49%</span></td><td>~1.20万亿</td><td>高开低走，连续两日低于4000点，推土机式缓跌</td></tr>
+    <tr><td>深证成指</td><td>14939.73</td><td><span class="down">-1.87%</span></td><td>~1.36万亿</td><td>跌幅显著大于沪指，成长股承压严重</td></tr>
+    <tr><td>创业板指</td><td>3845.35</td><td><span class="down">-1.70%</span></td><td>~6517亿</td><td>从3932→3824→3845，振幅3.61%，盘中跌超2%</td></tr>
+    <tr><td>科创50</td><td>2016.23</td><td><strong><span class="up">+0.73%</span></strong> 🔴</td><td>—</td><td>V型反转独红，半导体+算力权重带动</td></tr>
+  </tbody>
+</table></div>
+<p><strong>对比7/7收盘</strong>: 上证3990→3970(<span class="down">-0.49%</span>) / 深证15225→14939(<span class="down">-1.87%</span>) / 创业板3911→3845(<span class="down">-1.70%</span>) / 科创50 2001→2016(<span class="up">+0.73%</span>)</p>
+<p><strong>近一周(7/2→7/8)</strong>: 上证<span class="down">-1.44%</span> / 深证<span class="down">-3.62%</span> / 创业板<span class="down">-4.28%</span> / 科创50 <span class="up">+1.45%</span></p>
+<p><strong>市场结构</strong>: 1591涨/3790跌（涨跌比1:2.4）/ 56涨停/44跌停 / 87涨超9%/130跌超9%</p>
+<p><strong>其他指数</strong>: 沪深300跌0.77%报4755.53 / 中证1000跌2.22%报8117.86 / 北证50跌2.59%报1204.04</p>
+<hr>
+<h2>二、热门板块分析</h2>
+<h3>🔴 涨幅前五板块</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>排名</th><th>行业板块</th><th>涨跌幅</th><th>主力资金</th><th>领涨龙头/催化</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td><strong>计算机</strong></td><td><span class="up">+2.44%</span></td><td>净流入94.46亿🔥</td><td>算力租赁9股涨停(网宿科技20CM/深信服20CM/云赛智联/数据港) + AI服务器(浪潮信息一字涨停78.17) + 国资云/网络安全(中国互联网大会开幕+Claude Code安全风险提示→国产替代催化)</td></tr>
+    <tr><td>2</td><td><strong>煤炭</strong></td><td><span class="up">+1.20%</span></td><td>净流入0.92亿</td><td>高低切换+防御属性，中国神华等稳中有升</td></tr>
+    <tr><td>3</td><td><strong>银行</strong></td><td><span class="up">+0.94%</span></td><td>净流入3.40亿</td><td>低估值防御底仓+跨季资金面常态+净回笼850亿后银行股成为避险选择</td></tr>
+    <tr><td>4</td><td><strong>石油石化</strong></td><td><span class="up">+0.47%</span></td><td>净流入5.15亿</td><td>中东局势升级(美军打击伊朗+撤销伊朗石油制裁豁免)→WTI原油<span class="up">+2.76%</span>报70.44美元→油气走强(通源石油<span class="up">+7%</span>)</td></tr>
+    <tr><td>5</td><td><strong>食品饮料</strong></td><td><span class="up">+0.35%</span></td><td>净流出1.95亿</td><td>防御性消费板块小幅上涨，白酒/饮料温和表现</td></tr>
+  </tbody>
+</table></div>
+<p><strong>算力虹吸效应空前</strong>: 计算机行业净流入94.46亿，算力租赁方向净流入91.19亿（9股涨停），紫光股份净流入22.23亿、浪潮信息16.71亿、网宿科技13.94亿——占全市场净流入绝大部分</p>
+<h3>🔴 跌幅前五板块</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>排名</th><th>行业板块</th><th>跌跌幅</th><th>主力资金</th><th>回调原因</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td><strong>电力设备</strong></td><td><span class="down">-4.15%</span></td><td>净流出123.47亿🔥</td><td>锂矿全线崩跌(天齐锂业/融捷股份/盛新锂能跌停) + 固态电池/锂电池产业链全天下挫 + 新能源赛道高位退潮</td></tr>
+    <tr><td>2</td><td><strong>建筑材料</strong></td><td><span class="down">-3.68%</span></td><td>净流出19.79亿</td><td>英伟达Kyber延期打击延续(PCB/玻纤暴跌延续) + 地产链弱势</td></tr>
+    <tr><td>3</td><td><strong>基础化工</strong></td><td><span class="down">-3.44%</span></td><td>净流出54.43亿</td><td>氟化工/化工品高位回落 + 上游原材料价格承压</td></tr>
+    <tr><td>4</td><td><strong>机械设备</strong></td><td><span class="down">-3.41%</span></td><td>净流出72.87亿</td><td>人形机器人退潮(埃斯顿跌停/绿的谐波<span class="down">-13%</span>/大洋电机跌停) + 工业自动化回调</td></tr>
+    <tr><td>5</td><td><strong>有色金属</strong></td><td><span class="down">-3.17%</span></td><td>净流出66.59亿</td><td>锂矿/能源金属暴跌 + 黄金矿业股冲高回落分化</td></tr>
+  </tbody>
+</table></div>
+<p><strong>跌幅板块共性</strong>: 前期高位赛道(机器人/锂矿/新能源)系统性退潮，资金向算力方向集中转移——"弃高位拥算力"的结构性切换</p>
+<hr>
+<h2>三、资金动向分析</h2>
+<h3>今日主力资金流向</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>方向</th><th>行业</th><th>净流入/流出(亿元)</th><th>关键个股</th></tr></thead>
+  <tbody>
+    <tr><td>🔴净流入</td><td>计算机</td><td>+94.46</td><td>紫光股份+22.23亿/浪潮信息+16.71亿/网宿科技+13.94亿</td></tr>
+    <tr><td>🔴净流入</td><td>通信</td><td>+29.34</td><td>中兴通讯+11.33亿/中际旭创+10.18亿</td></tr>
+    <tr><td>🔴净流入</td><td>石油石化</td><td>+5.15</td><td>通源石油等</td></tr>
+    <tr><td>🔴净流入</td><td>银行</td><td>+3.40</td><td>工商银行/建设银行等</td></tr>
+    <tr><td>🔴净流出</td><td>电子</td><td>-164.12</td><td>长电科技-22.03亿/北京君正-15.67亿/兆易创新-13.88亿</td></tr>
+    <tr><td>🔴净流出</td><td>电力设备</td><td>-123.47</td><td>天齐锂业/融捷股份/宁德时代等</td></tr>
+    <tr><td>🔴净流出</td><td>机械设备</td><td>-72.87</td><td>埃斯顿/绿的谐波等机器人方向</td></tr>
+    <tr><td>🔴净流出</td><td>有色金属</td><td>-66.59</td><td>锂矿/稀土方向</td></tr>
+    <tr><td>🔴净流出</td><td>基础化工</td><td>-54.43</td><td>氟化工高位回落</td></tr>
+  </tbody>
+</table></div>
+<p><strong>全天主力净流出519.24亿</strong>（连续6日净流出）</p>
+<h3>近一周资金流向趋势</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>时间段</th><th>主力净流入方向</th><th>主力净流出方向</th><th>特征</th></tr></thead>
+  <tbody>
+    <tr><td>今日(7/8)</td><td>计算机(+94亿)→算力虹吸 / 通信(+29亿) / 银行(+3亿)</td><td>电子(-164亿) / 电力设备(-123亿) / 机械设备(-73亿)</td><td>极致分化，算力独吸</td></tr>
+    <tr><td>近一周(7/2-7/8)</td><td>计算机(持续流入) / 通信 / 银行</td><td>电子(连续大额流出) / 电力设备 / 有色</td><td>"弃硬拥云"趋势延续</td></tr>
+    <tr><td>近半月(6/22-7/8)</td><td>非银金融(6/22脉冲后回落) / 计算机(7月初至今持续)</td><td>电子(6月下旬至今持续流出) / 电力设备</td><td>科技内部从硬件→软件/服务切换</td></tr>
+    <tr><td>近一月(6/8-7/8)</td><td>医药/非银/计算机(轮动)</td><td>电子(6月中旬后持续流出) / 通信(高位退潮)</td><td>高位科技持续出逃，低位防御/算力切换</td></tr>
+  </tbody>
+</table></div>
+<p><strong>核心变化</strong>: 资金行为从7月初的"高低切换"(非银/医药)→7月8日的"弃硬拥云"(算力租赁/AI服务器/国产云)——大摩"卖芯片买云"策略在A股盘面全面验证</p>
+<hr>
+<h2>四、技术形态潜力股</h2>
+<blockquote>以下5只个股符合"股价站上5日/20日均线+成交量温和放大+MACD金叉或KDJ转强"技术条件，均为研究推荐，仅供参考</blockquote>
+<h3>1. 中芯国际（688981）— 半导体国产替代龙头</h3>
+<ul>
+<li><strong>7/8收盘</strong>: 152.10元（<span class="up">+4.59%</span>），成交额150.91亿</li>
+<li><strong>入选理由</strong>: 半导体板块V型反转领头羊，科创50独红核心权重；资金净流入10.85亿居前；美银证券报告指出半导体回调属正常修正而非需求转弱；国产替代长期逻辑不变</li>
+<li><strong>技术信号</strong>: 股价站上5日均线(约148)并向20日均线靠拢，MACD水上金叉迹象，成交量较前一交易日放大1.7倍</li>
+<li><strong>建议入场区间</strong>: 145-148元（回调至5日均线附近低吸）</li>
+<li><strong>止损位</strong>: 140元（跌破近期低点支撑）</li>
+<li><strong>预计两周目标涨幅</strong>: 8<span class="down">-12%</span>（目标165-170）</li>
+</ul>
+<h3>2. 中科曙光（603019）— 算力超算龙头</h3>
+<ul>
+<li><strong>7/8收盘</strong>: 98.15元（<span class="up">+4.97%</span>），成交额119.01亿</li>
+<li><strong>入选理由</strong>: AI算力+超算领域技术领先，液冷数据中心节能；浪潮信息业绩催化带动整个算力板块情绪；获可转债注册批复利好；资金净流入6.36亿</li>
+<li><strong>技术信号</strong>: 放量突破前期震荡区间，MACD金叉形成，股价站上5日均线，换手率8.24%活跃</li>
+<li><strong>建议入场区间</strong>: 93-95元（回调至昨收附近）</li>
+<li><strong>止损位</strong>: 88元（跌破20日均线支撑）</li>
+<li><strong>预计两周目标涨幅</strong>: 10<span class="down">-15%</span>（目标108-112）</li>
+</ul>
+<h3>3. 工业富联（601138）— AI服务器全球代工龙头</h3>
+<ul>
+<li><strong>7/8收盘</strong>: 66.01元（<span class="up">+3.50%</span>），成交额118.93亿</li>
+<li><strong>入选理由</strong>: 全球AI服务器代工份额超40%，大摩"卖芯片买云"策略核心受益标的；资金净流入10.56亿；估值合理(PE 32倍)</li>
+<li><strong>技术信号</strong>: 温和放量上涨3.50%，股价站上5日/20日均线，MACD指标转强，KDJ金叉形成</li>
+<li><strong>建议入场区间</strong>: 63-64元（回调至昨收附近）</li>
+<li><strong>止损位</strong>: 60元（跌破20日均线）</li>
+<li><strong>预计两周目标涨幅</strong>: 8<span class="down">-10%</span>（目标72-73）</li>
+</ul>
+<h3>4. 中兴通讯（000063）— 5G+算力通信龙头</h3>
+<ul>
+<li><strong>7/8收盘</strong>: 36.87元（<span class="up">+3.02%</span>），成交额72.65亿</li>
+<li><strong>入选理由</strong>: 通信行业资金净流入29.34亿，中兴独获11.33亿居首；5G基础设施+算力网络双驱动；中国互联网大会催化；估值合理(PE 39倍)</li>
+<li><strong>技术信号</strong>: 放量上涨3.02%，股价站上5日均线，MACD金叉买入信号确认，换手率4.90%</li>
+<li><strong>建议入场区间</strong>: 35-36元（回调至5日均线附近）</li>
+<li><strong>止损位</strong>: 33元（跌破近期支撑）</li>
+<li><strong>预计两周目标涨幅</strong>: 8<span class="down">-12%</span>（目标39-41）</li>
+</ul>
+<h3>5. 华虹宏力（688347）— 晶圆代工龙头</h3>
+<ul>
+<li><strong>7/8收盘</strong>: 涨超10%创历史新高，AH总市值突破3700亿</li>
+<li><strong>入选理由</strong>: 晶圆代工龙头，MCU/独立式闪存/BCD工艺产品增长显著；Q1归母净利同比<span class="up">+513%</span>；半导体国产替代核心标的；资金净流入居前</li>
+<li><strong>技术信号</strong>: 创历史新高+放量突破，MACD水上金叉确认，股价远超5日/20日均线——注意短期可能超买</li>
+<li><strong>建议入场区间</strong>: 等回调至5日均线附近再介入（约前日收盘价附近），切勿追高</li>
+<li><strong>止损位</strong>: 跌破5日均线即止损</li>
+<li><strong>预计两周目标涨幅</strong>: 5<span class="down">-8%</span>（创新高后温和上行）</li>
+</ul>
+<hr>
+<h2>五、个股推荐与策略</h2>
+<blockquote>以下5只个股匹配不同投资风格，均为研究推荐，仅供参考，不暗示为实际持仓</blockquote>
+<h3>1. 🔴 浪潮信息（000977）— 短线进攻型（算力业绩催化）</h3>
+<ul>
+<li><strong>7/8收盘</strong>: 78.17元（<strong>一字涨停<span class="up">+10.01%</span></strong>），昨收71.06</li>
+<li><strong>操作策略</strong>: 涨停后次日通常高开分歧→等待盘中回调至75-77元区间低吸（不超过5%追高）；若次日继续一字封板则放弃追入</li>
+<li><strong>催化</strong>: H1业绩预告归母净利26-31亿(+226<span class="down">-288%</span>)超市场预期，半年利润超去年全年</li>
+<li><strong>止盈位</strong>: 85元（约<span class="up">+10%</span>涨停后第二目标）</li>
+<li><strong>止损位</strong>: 72元（跌破昨收即止损）</li>
+<li><strong>风险</strong>: 一字涨停后分歧日波动剧烈，追高风险大</li>
+</ul>
+<h3>2. 🔴 中芯国际（688981）— 中线成长型（半导体国产替代）</h3>
+<ul>
+<li><strong>7/8收盘</strong>: 152.10元（<span class="up">+4.59%</span>）</li>
+<li><strong>操作策略</strong>: 7/9-7/10回调至145-148元区间分批建仓（仓位不超三成），持股周期2-4周</li>
+<li><strong>催化</strong>: 半导体国产替代长期逻辑(工信部硬指标:国产AI芯片比例70%) + 美银证券确认半导体回调属正常修正 + 大基金持仓变动完毕</li>
+<li><strong>止盈位</strong>: 170元（约<span class="up">+12%</span>）</li>
+<li><strong>止损位</strong>: 140元（约<span class="down">-8%</span>）</li>
+<li><strong>风险</strong>: 美股费半若继续暴跌可能情绪传导</li>
+</ul>
+<h3>3. 🟡 中兴通讯（000063）— 稳健价值型（5G+算力双驱动）</h3>
+<ul>
+<li><strong>7/8收盘</strong>: 36.87元（<span class="up">+3.02%</span>）</li>
+<li><strong>操作策略</strong>: 35-36元区间低吸建仓，仓位可至四成，持股周期3-6周</li>
+<li><strong>催化</strong>: 中国互联网大会(算力网络/数据安全) + 通信行业资金净流入29.34亿 + 国产算力+5G基建双主线</li>
+<li><strong>止盈位</strong>: 40元（约<span class="up">+9%</span>）</li>
+<li><strong>止损位</strong>: 33元（约<span class="down">-10%</span>）</li>
+<li><strong>风险</strong>: 通信行业整体跌<span class="down">-0.18%</span>，中兴相对强但板块承压</li>
+</ul>
+<h3>4. 🟡 紫金矿业（601899）— 防御避险型（黄金+有色）</h3>
+<ul>
+<li><strong>7/8收盘</strong>: 约133元（有色行业<span class="down">-3.17%</span>拖累但黄金方向分化）</li>
+<li><strong>操作策略</strong>: 128-132元区间低吸，仓位不超两成，持股周期4-8周</li>
+<li><strong>催化</strong>: 央行连续多月增持黄金(6月末7544万盎司+48万) + 中东地缘升级(美军打击伊朗) + 全球避险需求</li>
+<li><strong>止盈位</strong>: 145元（约<span class="up">+9%</span>）</li>
+<li><strong>止损位</strong>: 125元（约<span class="down">-6%</span>）</li>
+<li><strong>风险</strong>: 有色行业整体大跌<span class="down">-3.17%</span>，黄金方向短期冲高后可能分化</li>
+</ul>
+<h3>5. 🔵 中国神华（601088）— 红利防御型（煤炭高分红）</h3>
+<ul>
+<li><strong>7/8收盘</strong>: 约39元（煤炭行业<span class="up">+1.20%</span>温和上涨）</li>
+<li><strong>操作策略</strong>: 38-39元区间建仓，仓位可至三成，持股周期6-12周（长期底仓配置）</li>
+<li><strong>催化</strong>: 煤炭<span class="up">+1.20%</span>防御+高分红(年化分红率约6<span class="down">-7%</span>) + 低估值(PE约10倍) + 高低切换防御底仓首选</li>
+<li><strong>止盈位</strong>: 43元（约<span class="up">+10%</span>）</li>
+<li><strong>止损位</strong>: 36元（约<span class="down">-8%</span>）</li>
+<li><strong>风险</strong>: 煤炭板块涨幅温和，弹性有限但防御性强</li>
+</ul>
+<hr>
+<h2>六、风险提示与操作建议</h2>
+<h3>市场量能评估</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>维度</th><th>数据</th><th>评估</th></tr></thead>
+  <tbody>
+    <tr><td>成交额</td><td>2.56万亿</td><td>✅ 维持2.5万亿以上，但缩量176亿，增量资金观望</td></tr>
+    <tr><td>涨跌家数</td><td>1591涨/3790跌</td><td>❌ 赌钱效应显著，仅28.86%个股上涨</td></tr>
+    <tr><td>涨停/跌停</td><td>56涨停/44跌停</td><td>⚠️ 赌停数较多但涨停也不少，结构性而非系统性恐慌</td></tr>
+    <tr><td>主力资金</td><td>净流出519.24亿(连续6日)</td><td>❌ 资金持续撤离，未见增量入场信号</td></tr>
+  </tbody>
+</table></div>
+<h3>建议仓位：**三至四成偏谨慎**</h3>
+<p><strong>理由</strong>:</p>
+<p>1. 上证连续两日低于4000点，推土机式缓跌未止</p>
+<p>2. 主力资金连续6日净流出（今日519亿），增量资金观望</p>
+<p>3. 赌钱效应显著（仅28.86%个股上涨）</p>
+<p>4. 成交缩量（2.56万亿→低于7/1的3.66万亿峰值）</p>
+<p>5. 但科创50独红+算力虹吸效应→结构性机会存在</p>
+<p><strong>策略</strong>: 建议仓位三至四成，其中算力/国产替代方向不超两成，防御底仓（银行/煤炭）一成，保留六成以上现金等待右侧信号</p>
+<h3>潜在不确定性</h3>
+<p>1. <strong>美股费半持续回调风险</strong>: 费半7/7暴跌<span class="down">-4.65%</span>，英特尔<span class="down">-9.66%</span>，若继续下探→情绪传导压制A股科技板块，即便是"国产替代独立行情"也难以完全免疫</p>
+<p>2. <strong>中东局势升级风险</strong>: 美军打击伊朗+7月17日伊朗石油销售豁免截止日→若油价突破80美元→全球通胀预期升温→美联储加息预期强化</p>
+<p>3. <strong>算力虹吸极端化风险</strong>: 今日算力方向占全市场净流入绝大部分，一旦共识松动→回撤幅度可能与上涨幅度对称</p>
+<p>4. <strong>中报预告密集披露</strong>: 7月15日主板强制披露截止→高估值标的面临业绩证伪风险</p>
+<p>5. <strong>美联储会议纪要+美国CPI数据</strong>: 若CPI超预期→重新触发加息恐慌→压制全球科技股估值</p>
+<p>6. <strong>央行净回笼850亿</strong>: 资金面回到常态化，缺少增量宽松刺激→指数反弹动力不足</p>
+<h3>隔夜外盘（7/7美股收盘·影响7/8A股）</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>指数</th><th>收盘</th><th>涨跌幅</th><th>关键个股</th></tr></thead>
+  <tbody>
+    <tr><td>道指</td><td>~52918</td><td><span class="down">-0.25%</span></td><td>壳牌<span class="up">+5%</span>/埃克森美孚<span class="up">+3%</span>/雪佛龙<span class="up">+3%</span>(油气方向)</td></tr>
+    <tr><td>纳指</td><td>25818.69</td><td><strong><span class="down">-1.16%</span></strong></td><td>Meta<span class="up">+2.55%</span>唯一翻红/英特尔<span class="down">-9.66%</span>/AMD<span class="down">-6%</span>/西部数据<span class="down">-7%</span></td></tr>
+    <tr><td>标普500</td><td>~7499</td><td><span class="down">-0.45%</span></td><td>能源蓝筹vs科技成长冰火两重天</td></tr>
+    <tr><td>费半</td><td>—</td><td><strong><span class="down">-4.65%</span></strong>🔥</td><td>存储概念<span class="down">-5.45%</span>/闪迪<span class="down">-7%</span>/美光<span class="down">-4.71%</span>/阿斯麦<span class="down">-4%</span></td></tr>
+    <tr><td>金龙中国</td><td>—</td><td><span class="down">-0.58%</span></td><td>爱奇艺<span class="down">-7%</span>/富途<span class="down">-4%</span>/蔚来小鹏百度<span class="down">-2%</span>+</td></tr>
+    <tr><td>WTI原油</td><td>70.44美元</td><td><span class="up">+2.76%</span></td><td>中东局势→油价跳涨→能源股尾盘暴拉</td></tr>
+    <tr><td>SpaceX</td><td>—</td><td><strong><span class="down">-6.83%</span></strong></td><td>纳指100首日大跌，IPO以来收盘新低</td></tr>
+  </tbody>
+</table></div>
+<p><strong>美股定性</strong>: "冰火两重天"——AI芯片/存储踩踏式出逃→资金切换到能源蓝筹避险→大摩"卖芯片买云"策略加速验证</p>
+<hr>
+<h2>附录：7/8重要消息摘要</h2>
+<p>1. <strong>浪潮信息H1业绩预告</strong>: 归母净利26-31亿(+226<span class="down">-288%</span>)，半年利润超去年全年→一字涨停催化算力板块</p>
+<p>2. <strong>中国互联网大会开幕</strong>: AI/算力网络/数据安全/智能体互联网→国资云/网络安全方向涨停潮</p>
+<p>3. <strong>工信部Claude Code安全后门风险提示</strong>: 企业级AI工具安全隐患→利好国产软件/信创/国资云替代链条</p>
+<p>4. <strong>网宿科技+正泰集团Token工厂</strong>: 绿电直连MW级Token工厂→算力租赁从"卖资源"向"卖产出"演变</p>
+<p>5. <strong>英特尔CPU涨价7<span class="down">-12%</span></strong>: 半导体涨价周期持续→AI算力驱动先进封装需求</p>
+<p>6. <strong>央行150亿7天逆回购(净回笼850亿)</strong>: 跨季资金面回到常态，缺少增量宽松刺激</p>
+<p>7. <strong>美军打击伊朗+撤销伊朗石油制裁豁免</strong>: 中东局势升级→油价<span class="up">+2.76%</span>→油气板块逆势走强</p>
+<p>8. <strong>三星Q2利润暴增1810%但股价跌7%</strong>: "好业绩坏股价"→存储供给过剩预期→全球半导体恐慌</p>
+<p>9. <strong>大摩"卖芯片买云"策略</strong>: 全球科技资金轮动关键信号→7/8A股盘面全面验证</p>
+<p>10. <strong>央行连续增持黄金</strong>: 6月末7544万盎司+48万→黄金避险逻辑持续</p>
+<hr>
+<blockquote>⚠️ <strong>免责声明</strong>: 本报告仅为基于公开数据的行情复盘与产业逻辑梳理，所有个股推荐均为研究推荐/仅供参考，不构成任何投资建议，不暗示为实际持仓。股市有风险，投资需谨慎，请独立判断。</blockquote>
+<blockquote>📅 报告日期: 2026年7月8日 | 数据来源: 东方财富Choice/财联社星矿数据/界面新闻/证券时报/新浪财经/雪球/Wind资讯</blockquote>
+        </div>
+
+        <div class="footer">
+            <p>⚠️ 本报告仅供研究参考，不构成投资建议。投资有风险，入市需谨慎。</p>
+            <p style="margin-top:4px;">数据来源：东方财富网 · 妙想API ｜ 自动生成</p>
+        </div>
+    </div>
+
+    <button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+    <script>
+        // 给 h2 添加 id 用于锚点导航
+        document.querySelectorAll('h2').forEach((h2, i) => {
+            h2.id = 'section-' + (i + 1);
+        });
+
+        // 回到顶部按钮
+        window.addEventListener('scroll', () => {
+            const btn = document.getElementById('backTop');
+            btn.style.display = window.scrollY > 300 ? 'block' : 'none';
+        });
+    </script>
+</body>
+</html>
