@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>A股晨间分析日报 - 2026年07月27日</title>
+    <style>
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-card: #1e293b;
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --accent-cyan: #06b6d4;
+            --color-up: #ef4444;
+            --color-down: #22c55e;
+            --border-color: #334155;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            font-size: 15px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 16px 40px;
+        }
+
+        /* 顶部头图区域 */
+        .header {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2d1b69 50%, #1a1a2e 100%);
+            padding: 32px 20px 24px;
+            margin: 0 -16px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(59,130,246,0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 50%, rgba(139,92,246,0.1) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1) rotate(0deg); }
+            100% { transform: scale(1.1) rotate(3deg); }
+        }
+
+        .header h1 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #60a5fa, #a78bfa, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            margin-bottom: 8px;
+        }
+
+        .header .date {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            position: relative;
+        }
+
+        .header .update-time {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            position: relative;
+            margin-top: 4px;
+        }
+
+        /* 卡片样式 */
+        h2 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 24px 0 12px;
+            padding: 12px 16px;
+            background: linear-gradient(135deg, rgba(59,130,246,0.12), rgba(139,92,246,0.08));
+            border-left: 3px solid var(--accent-blue);
+            border-radius: 0 8px 8px 0;
+        }
+
+        h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 16px 0 8px;
+            padding: 8px 12px;
+            background: rgba(59,130,246,0.06);
+            border-radius: 6px;
+        }
+
+        h1 {
+            display: none; /* 隐藏MD中的顶级标题，用header替代 */
+        }
+
+        /* 段落 */
+        p {
+            margin: 8px 0;
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+        }
+
+        /* 表格 */
+        .table-wrap {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 12px 0;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            background: var(--bg-card);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        thead {
+            background: linear-gradient(135deg, rgba(59,130,246,0.2), rgba(139,92,246,0.15));
+        }
+
+        th {
+            padding: 10px 8px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-primary);
+            white-space: nowrap;
+            font-size: 0.82rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        td {
+            padding: 9px 8px;
+            border-bottom: 1px solid rgba(51,65,85,0.5);
+            color: var(--text-secondary);
+            font-size: 0.82rem;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover {
+            background: rgba(59,130,246,0.05);
+        }
+
+        /* 涨跌颜色 */
+        .up {
+            color: var(--color-up);
+            font-weight: 600;
+        }
+
+        .down {
+            color: var(--color-down);
+            font-weight: 600;
+        }
+
+        /* 引用块 */
+        blockquote {
+            margin: 12px 0;
+            padding: 12px 16px;
+            background: rgba(234,179,8,0.08);
+            border-left: 3px solid #eab308;
+            border-radius: 0 6px 6px 0;
+            color: #fbbf24;
+            font-size: 0.88rem;
+            line-height: 1.6;
+        }
+
+        /* 列表 */
+        ul {
+            margin: 8px 0;
+            padding-left: 20px;
+        }
+
+        li {
+            margin: 6px 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* 水平线 */
+        hr {
+            border: none;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+            margin: 20px 0;
+        }
+
+        /* 强调文字 */
+        strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* 底部免责声明 */
+        .footer {
+            margin-top: 32px;
+            padding: 16px;
+            background: rgba(239,68,68,0.06);
+            border: 1px solid rgba(239,68,68,0.15);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .footer p {
+            color: var(--text-muted);
+            font-size: 0.78rem;
+            line-height: 1.6;
+        }
+
+        /* 快捷导航 */
+        .nav-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 12px 0 20px;
+            padding: 10px 12px;
+            background: var(--bg-card);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .nav-bar a {
+            display: inline-block;
+            padding: 5px 12px;
+            background: rgba(59,130,246,0.1);
+            color: #60a5fa;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .nav-bar a:hover {
+            background: rgba(59,130,246,0.25);
+            transform: translateY(-1px);
+        }
+
+        /* 指标卡片 */
+        .index-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 12px 0;
+        }
+
+        .index-card {
+            background: var(--bg-card);
+            border-radius: 10px;
+            padding: 14px 12px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .index-card .name {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .index-card .value {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .index-card .change {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-top: 2px;
+        }
+
+        .index-card .change.up {
+            color: var(--color-up);
+        }
+
+        .index-card .change.down {
+            color: var(--color-down);
+        }
+
+        .index-card .volume {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* 回到顶部 */
+        .back-top {
+            position: fixed;
+            bottom: 24px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(59,130,246,0.4);
+            display: none;
+            z-index: 100;
+            transition: transform 0.2s;
+        }
+
+        .back-top:hover {
+            transform: scale(1.1);
+        }
+
+        /* 移动端优化 */
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 12px 32px;
+            }
+
+            .header {
+                padding: 24px 16px 20px;
+                margin: 0 -12px 16px;
+            }
+
+            .header h1 {
+                font-size: 1.35rem;
+            }
+
+            h2 {
+                font-size: 1.05rem;
+                padding: 10px 12px;
+                margin: 20px 0 10px;
+            }
+
+            h3 {
+                font-size: 0.95rem;
+            }
+
+            table {
+                font-size: 0.75rem;
+            }
+
+            th, td {
+                padding: 7px 5px;
+            }
+
+            .index-cards {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+
+            .index-card .value {
+                font-size: 1rem;
+            }
+
+            .nav-bar {
+                gap: 5px;
+                padding: 8px 10px;
+            }
+
+            .nav-bar a {
+                padding: 4px 10px;
+                font-size: 0.72rem;
+            }
+        }
+
+        /* 宽屏优化 */
+        @media (min-width: 768px) {
+            body {
+                font-size: 16px;
+            }
+
+            .container {
+                padding: 0 24px 48px;
+            }
+
+            .header {
+                padding: 40px 32px 28px;
+                margin: 0 -24px 24px;
+            }
+
+            .header h1 {
+                font-size: 1.9rem;
+            }
+
+            .index-cards {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>A股晨间分析日报</h1>
+            <div class="date">2026年07月27日</div>
+        </div>
+
+        <nav class="nav-bar">
+            <a href="#section-1">大盘概览</a>
+            <a href="#section-2">热门板块</a>
+            <a href="#section-3">资金动向</a>
+            <a href="#section-4">潜力股</a>
+            <a href="#section-5">个股策略</a>
+            <a href="#section-6">风险提示</a>
+        </nav>
+
+        <div id="report-content">
+<h1>A股晨间分析日报 | 2026年7月27日（周一）</h1>
+<blockquote>🔴🔴🔴 <strong>超级日：长鑫科技上市+美伊停火+宁德400亿回购+政治局会议周</strong></blockquote>
+<blockquote>市场刚开盘，三大指数微幅波动。7/24周五收盘数据为分析基准，7/27开盘数据为前瞻。</blockquote>
+<hr>
+<h2>一、大盘概览</h2>
+<h3>7/24周五收盘数据（基准）</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>指数</th><th>收盘点位</th><th>涨跌幅</th><th>成交额（亿元）</th><th>趋势简述</th></tr></thead>
+  <tbody>
+    <tr><td>上证指数</td><td>3814.20</td><td><span class="down">-1.61%</span> 🔴</td><td>约8,522</td><td>跌近3800，缩量明显，4连跌后短线支撑3810</td></tr>
+    <tr><td>深证成指</td><td>13774.68</td><td><span class="down">-2.47%</span> 🔴</td><td>约10,922</td><td>跌幅大于沪指，科技中小票重挫</td></tr>
+    <tr><td>创业板指</td><td>3480.87</td><td><span class="down">-2.65%</span> 🔴🔴</td><td>约4,470</td><td>创近期新低，创新药/半导体回调</td></tr>
+    <tr><td>科创50</td><td>1787.20</td><td><span class="down">-0.14%</span> 🟡</td><td>约326</td><td>硬科技相对抗跌，长鑫上市前半导体护盘</td></tr>
+  </tbody>
+</table></div>
+<p><strong>7/24成交总额：约1.94万亿（缩量约2,650亿），554涨/4937跌（仅10.6%上涨），43涨停/25跌停</strong></p>
+<h3>7/27周一开盘数据（实时）</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>指数</th><th>开盘点位</th><th>涨跌幅</th><th>特征</th></tr></thead>
+  <tbody>
+    <tr><td>上证指数</td><td>3808.90</td><td><span class="down">-0.14%</span></td><td>低开微跌，银行+半导体护盘</td></tr>
+    <tr><td>深证成指</td><td>13768.60</td><td><span class="down">-0.04%</span></td><td>几乎平开</td></tr>
+    <tr><td>创业板指</td><td>3482.04</td><td><span class="up">+0.03%</span></td><td>微幅翻红</td></tr>
+    <tr><td>科创50</td><td>1780.72</td><td><span class="down">-0.36%</span></td><td>长鑫上市首日高开471%，半导体设备活跃</td></tr>
+  </tbody>
+</table></div>
+<hr>
+<h2>二、热门板块分析</h2>
+<h3>🔴🔴 涨幅前五板块（7/24收盘·申万一级行业）</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>排名</th><th>板块</th><th>涨跌幅</th><th>领涨龙头/驱动因素</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>银行</td><td><span class="up">+0.31%</span> 🟢</td><td><strong>唯一上涨行业</strong>·国家队维稳红利风格·四大行抗跌·避险首选</td></tr>
+    <tr><td>2</td><td>环保</td><td><span class="down">-1.76%</span>（净流入7797万唯一正方向）</td><td>唯一主力净流入行业·绿色低碳政策催化</td></tr>
+    <tr><td>3</td><td>电子</td><td><span class="down">-0.76%</span></td><td>相对抗跌·存储芯片活跃（至纯科技涨停/中科飞测<span class="up">+7%</span>）/长鑫上市催化</td></tr>
+    <tr><td>4</td><td>食品饮料</td><td><span class="down">-1.01%</span></td><td>低估值防御·白酒局部抗跌</td></tr>
+    <tr><td>5</td><td>家用电器</td><td><span class="down">-1.40%</span></td><td>稳增长消费刺激政策预期</td></tr>
+  </tbody>
+</table></div>
+<blockquote><strong>分析</strong>：7/24仅银行微涨0.31%，其余30个行业全线下跌。但结构上，银行/电子/食品饮料跌幅较小，属于"防御+硬科技"两条线。7/27开盘后，黄金板块因美伊停火金价跳涨4100美元而高开，油气煤炭因油价暴跌而低开。</blockquote>
+<h3>🔴🔴🔴 跌幅前五板块</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>排名</th><th>板块</th><th>涨跌幅</th><th>回调原因</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>有色金属</td><td><span class="down">-4.71%</span> 🔴🔴🔴</td><td>黄金股大跌（招金<span class="down">-8%</span>/四川黄金<span class="down">-7.97%</span>/赤峰<span class="down">-6.03%</span>）/主因净流出67.71亿·金价高位回调+美伊冲突降温预期</td></tr>
+    <tr><td>2</td><td>综合</td><td><span class="down">-4.49%</span></td><td>小盘投机股踩踏</td></tr>
+    <tr><td>3</td><td>美容护理</td><td><span class="down">-3.83%</span></td><td>消费情绪低迷</td></tr>
+    <tr><td>4</td><td>传媒</td><td><span class="down">-3.55%</span></td><td>AI语料退潮/净流出29.95亿</td></tr>
+    <tr><td>5</td><td>计算机</td><td><span class="down">-3.66%</span> 🔴🔴</td><td>软件股重挫/净流出64.98亿·算力租赁退潮</td></tr>
+  </tbody>
+</table></div>
+<blockquote><strong>7/24主力资金全天净流出634.02亿</strong>，仅环保净流入。有色金属净流出67.71亿居首，计算机-64.98亿，通信-73.29亿，非银金融-63.64亿，公用事业-64.23亿。全市场4937只下跌，赚钱效应仅10.6%。</blockquote>
+<hr>
+<h2>三、资金动向分析</h2>
+<div class="table-wrap"><table>
+  <thead><tr><th>时间维度</th><th>主力资金主要流入方向</th><th>主要流出方向</th></tr></thead>
+  <tbody>
+    <tr><td><strong>7/24当日</strong></td><td>环保（0.78亿唯一正方向）/银行相对抗跌</td><td>有色金属-67.71亿/通信-73.29亿/计算机-64.98亿/非银金融-63.64亿</td></tr>
+    <tr><td><strong>近一周(7/20-7/24)</strong></td><td>黄金ETF周<span class="up">+10%</span>/半导体设备ETF<span class="up">+3.6%</span>/红利ETF<span class="up">+3.07%</span></td><td>机器人ETF周<span class="down">-6%</span><span class="down">-7%</span>/小盘宽基周<span class="down">-6%</span><span class="down">-7%</span>/算力租赁退潮</td></tr>
+    <tr><td><strong>近半月(7/10-7/24)</strong></td><td>ETF连续11日净流入3567亿（上周2036亿历史新高）/电力设备/电网/有色金属(前期强势)</td><td>科技股连续净流出/AI硬件踩踏/半导体高位补跌</td></tr>
+    <tr><td><strong>近一月(6月底-7/24)</strong></td><td>国家队600亿维稳/央国企回购增持潮/险资5大巨头20万亿+</td><td>科技净流出合计超2000亿/两融降至2.72万亿（杠杆有序释放）</td></tr>
+  </tbody>
+</table></div>
+<blockquote><strong>关键变化</strong>：7/27开盘后美伊停火→油价暴跌→黄金跳涨→资金可能从油气转向黄金/避险→但若停火持续，黄金股也可能因避险需求下降而回调。风格切换苗头：科技→红利价值的轮动信号增强。</blockquote>
+<hr>
+<h2>四、技术形态潜力股</h2>
+<blockquote>⚠️ 以下个股为<strong>研究推荐/仅供参考</strong>，非实际持仓。个股价格需持续跟踪验证。</blockquote>
+<div class="table-wrap"><table>
+  <thead><tr><th>个股</th><th>代码</th><th>入选理由</th><th>建议入场区间</th><th>止损位</th><th>预计两周目标涨幅</th></tr></thead>
+  <tbody>
+    <tr><td>宁德时代</td><td>300750</td><td>🔥🔥🔥日赚2.4亿/H1净利432.84亿<span class="up">+42%</span>/200-400亿注销回购创纪录/全球市占40%/回购价上限573元（溢价50%）</td><td>370-385元</td><td>350元</td><td>15<span class="down">-20%</span></td></tr>
+    <tr><td>至纯科技</td><td>603690</td><td>存储设备龙头/7/24涨停/长鑫上市催化半导体设备国产替代/高盛看中国存储扩产周期</td><td>22-25元</td><td>20元</td><td>15<span class="down">-25%</span></td></tr>
+    <tr><td>中科飞测</td><td>688390</td><td>半导体检测设备/7/24涨近7%/长鑫扩产带动设备需求/国产替代刚需</td><td>72-78元</td><td>68元</td><td>10<span class="down">-15%</span></td></tr>
+    <tr><td>紫金矿业</td><td>601899</td><td>全球矿业龙头/7/24虽有净流出11.67亿但长期逻辑不变/金价4096美元支撑/花旗看25万碳酸锂</td><td>15.5-16.5元</td><td>14.5元</td><td>10<span class="down">-15%</span></td></tr>
+    <tr><td>云南锗业</td><td>002428</td><td>7/24有色板块唯一净流入1.46亿/磷化铟催化/锗战略资源/氦气管制延伸逻辑</td><td>28-32元</td><td>25元</td><td>15<span class="down">-20%</span></td></tr>
+  </tbody>
+</table></div>
+<hr>
+<h2>五、个股推荐与策略（研究推荐/仅供参考）</h2>
+<h3>1. 稳健型 — 宁德时代（300750）</h3>
+<ul>
+<li><strong>策略</strong>：7/24收盘383.01元，回购价上限573元溢价50%形成强力支撑。逢380附近低吸，分3批建仓（每批1/3）</li>
+<li><strong>止盈</strong>：430元（第一目标）/500元（第二目标）</li>
+<li><strong>止损</strong>：350元（跌破则仓位减半）</li>
+</ul>
+<h3>2. 价值型 — 银行ETF或工商银行（601398）</h3>
+<ul>
+<li><strong>策略</strong>：7/24唯一上涨行业，国家队维稳红利风格持续。逢6.5元附近低吸</li>
+<li><strong>止盈</strong>：7.0元</li>
+<li><strong>止损</strong>：6.2元</li>
+</ul>
+<h3>3. 成长型 — 至纯科技（603690）</h3>
+<ul>
+<li><strong>策略</strong>：长鑫上市催化半导体设备国产替代，存储扩产周期受益。7/24涨停后回调低吸</li>
+<li><strong>止盈</strong>：30元</li>
+<li><strong>止损</strong>：20元</li>
+</ul>
+<h3>4. 防御型 — 紫金矿业（601899）</h3>
+<ul>
+<li><strong>策略</strong>：金价4096美元+碳酸锂周期+全球矿业龙头。虽7/24受有色板块拖累，但基本面未变。7/27金价跳涨提供支撑</li>
+<li><strong>止盈</strong>：18元</li>
+<li><strong>止损</strong>：14.5元</li>
+</ul>
+<h3>5. 激进型 — 长鑫科技（688825）</h3>
+<ul>
+<li><strong>策略</strong>：7/27首日高开471%报49.5元/市值3.31万亿登顶A股第一。<strong>首日波动极大，仅适合极短线/不建议追高</strong>。关注首日成交额（预计1000-1500亿）对市场抽血效应</li>
+<li><strong>止盈</strong>：短线55-60元</li>
+<li><strong>止损</strong>：42元</li>
+</ul>
+<hr>
+<h2>六、风险提示与操作建议</h2>
+<h3>🔴🔴🔴 市场判断：三成以下极度谨慎</h3>
+<p><strong>核心逻辑</strong>：</p>
+<p>1. <strong>7/24仅554只上涨（10.6%）</strong>·4937只下跌·25跌停·赚钱效应极差</p>
+<p>2. <strong>缩量1.94万亿</strong>·较前一交易日缩量2650亿·卖盘趋于枯竭但买盘更弱</p>
+<p>3. <strong>主力净流出634亿</strong>·30个行业净流出·仅环保0.78亿净流入</p>
+<p>4. <strong>长鑫科技7/27上市首日抽血1000-1500亿成交</strong>·可能加剧市场流动性压力</p>
+<h3>🔴 关键风险因素</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>风险</th><th>级别</th><th>说明</th></tr></thead>
+  <tbody>
+    <tr><td>🔴🔴🔴 长鑫上市抽血</td><td>★★★★★</td><td>首日成交预计1000-1500亿/可流通仅6.63%/短期流动性冲击巨大</td></tr>
+    <tr><td>🔴🔴 美伊停火脆弱</td><td>★★★★</td><td>暂停≠停火·伊朗"怀疑多于乐观"·特朗普保留升级选项·红海胡塞持续袭击</td></tr>
+    <tr><td>🔴🔴 油价暴涨→暴跌</td><td>★★★★</td><td>布油7/27开盘跌破90（<span class="down">-7%</span>）→但本周仍涨30%/高盛看Q4布油120/通胀担忧</td></tr>
+    <tr><td>🔴🔴 美股纳指三连跌</td><td>★★★★</td><td>7/24纳指<span class="down">-0.64%</span>/费半<span class="down">-4.25%</span>/存储重挫/特斯拉周跌18%/七巨头仅英伟达周涨</td></tr>
+    <tr><td>🔴🔴 加息预期</td><td>★★★★</td><td>7/30美联储决议/沃什鹰派/"高利率更久"共识/9月加息概率69%</td></tr>
+    <tr><td>🔴 特朗普关税</td><td>★★★</td><td>新一轮关税7/24已生效60经济体/威胁301调查欧盟</td></tr>
+    <tr><td>🔴 携程垄断罚51.79亿</td><td>★★★</td><td>反垄断反内卷信号/平台股承压</td></tr>
+  </tbody>
+</table></div>
+<h3>🟢 关键利好因素</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>利好</th><th>级别</th><th>说明</th></tr></thead>
+  <tbody>
+    <tr><td>🔥🔥🔥 宁德400亿回购</td><td>★★★★★</td><td>A股史上最大回购/注销减资/回购价573元溢价50%/产业资本信心</td></tr>
+    <tr><td>🔥🔥🔥 美伊停火窗口</td><td>★★★★★</td><td>暂停空袭+外交斡旋+霍尔木兹谈判进展/油价暴跌缓解通胀</td></tr>
+    <tr><td>🔥🔥🔥 长鑫上市</td><td>★★★★★</td><td>国产DRAM里程碑/存储产业链催化/半导体设备受益</td></tr>
+    <tr><td>🔥🔥🔥 7月政治局会议</td><td>★★★★★</td><td>本周预计召开/稳增长增量政策预期</td></tr>
+    <tr><td>🔥🔥 40家回购增持</td><td>★★★★</td><td>3天40家公司440亿/产业资本信心</td></tr>
+    <tr><td>🔥🔥 31省GDP15省跑赢全国</td><td>★★★★</td><td>广东江苏双双7万亿+</td></tr>
+    <tr><td>🔥 两高修改内幕交易司法解释</td><td>★★★</td><td>7/27起施行/市场公平性改善</td></tr>
+    <tr><td>🔥 储能订单暴增30倍</td><td>★★★</td><td>AI数据中心配套刚需</td></tr>
+  </tbody>
+</table></div>
+<h3>建议仓位：三成以下极度谨慎</h3>
+<blockquote><strong>7/27为超级变盘日</strong>：长鑫上市抽血+美伊停火+宁德回购+政治局会议周，多重因素交织。短线操作空间极小，建议观望为主。若长鑫首日抽血效应导致市场大幅下杀至3750附近，可考虑少量抄底银行/宁德等确定性品种。</blockquote>
+<hr>
+<h2>附录：隔夜外盘数据</h2>
+<h3>美股7/24收盘</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>指数</th><th>收盘</th><th>涨跌幅</th></tr></thead>
+  <tbody>
+    <tr><td>道指</td><td>51,947.25</td><td><span class="up">+0.46%</span></td></tr>
+    <tr><td>标普500</td><td>7,411.98</td><td><span class="up">+0.05%</span></td></tr>
+    <tr><td>纳指</td><td>24,975.82</td><td><span class="down">-0.64%</span>（三连跌）</td></tr>
+    <tr><td>费半</td><td>-</td><td><span class="down">-4.25%</span>（存储光通信重挫）</td></tr>
+  </tbody>
+</table></div>
+<p><strong>美股7/24关键个股</strong>：</p>
+<ul>
+<li>🔴 闪迪<span class="down">-10%</span>+ / 铠侠ADR<span class="down">-14%</span> / SK海力士<span class="down">-8%</span>+ / 英特尔<span class="down">-7%</span>+ / 迈威尔<span class="down">-8%</span>+ / Credo<span class="down">-9%</span>+ / Coherent<span class="down">-9%</span>+</li>
+<li>🟢 苹果<span class="up">+3.53%</span> / IBM<span class="up">+3.65%</span></li>
+<li>🔴 特斯拉<span class="down">-2%</span>+（本周累跌18%创2022年来最大周跌）/ SpaceX<span class="down">-2%</span>+</li>
+</ul>
+<h3>原油7/27亚盘（美伊停火后）</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>品种</th><th>价格</th><th>变动</th></tr></thead>
+  <tbody>
+    <tr><td>WTI原油</td><td>约84美元</td><td><span class="down">-5%</span>~6%</td></tr>
+    <tr><td>布伦特原油</td><td>约89-92美元</td><td><span class="down">-4%</span>~7%（一度跌破90）</td></tr>
+    <tr><td>COMEX黄金</td><td>约4,096美元</td><td><span class="up">+1%</span>+（跳涨40美元）</td></tr>
+  </tbody>
+</table></div>
+<h3>7/27本周重大事件预告</h3>
+<p>1. 🔥🔥🔥 7月政治局会议（预计本周召开）</p>
+<p>2. 🔥🔥🔥 长鑫科技上市首日（7/27）</p>
+<p>3. 🔥🔥🔥 美英日央行利率决议（7/30美联储/8/1英央行/8/1日央行）</p>
+<p>4. 🔥🔥🔥 四大科技巨头+存储巨头财报（微软/苹果/亚马逊/Meta/SK海力士/三星/铠侠）</p>
+<p>5. 🔥🔥 美伊停火后续/霍尔木兹海峡谈判</p>
+<p>6. 🔥 第12批药品集采（7/31）</p>
+<p>7. 🔥 中际旭创港股上市</p>
+<p>8. 🟡 台风红霞灾后恢复</p>
+<hr>
+<p>*本报告基于7/24收盘数据+7/27开盘实时数据+公开新闻整合生成。所有数据来源于WebSearch/WebFetch公开财经媒体，非模拟数据。个股推荐为研究推荐，仅供参考，不构成投资建议。*</p>
+<p>*报告时间：2026年7月27日 09:30 | 数据截止：7/27开盘约9:30*</p>
+        </div>
+
+        <div class="footer">
+            <p>⚠️ 本报告仅供研究参考，不构成投资建议。投资有风险，入市需谨慎。</p>
+            <p style="margin-top:4px;">数据来源：东方财富网 · 妙想API ｜ 自动生成</p>
+        </div>
+    </div>
+
+    <button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+    <script>
+        // 给 h2 添加 id 用于锚点导航
+        document.querySelectorAll('h2').forEach((h2, i) => {
+            h2.id = 'section-' + (i + 1);
+        });
+
+        // 回到顶部按钮
+        window.addEventListener('scroll', () => {
+            const btn = document.getElementById('backTop');
+            btn.style.display = window.scrollY > 300 ? 'block' : 'none';
+        });
+    </script>
+</body>
+</html>
