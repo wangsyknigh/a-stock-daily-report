@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>A股晨间分析日报 - 2026年09月25日</title>
+    <style>
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-card: #1e293b;
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --accent-cyan: #06b6d4;
+            --color-up: #ef4444;
+            --color-down: #22c55e;
+            --border-color: #334155;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            font-size: 15px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 16px 40px;
+        }
+
+        /* 顶部头图区域 */
+        .header {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2d1b69 50%, #1a1a2e 100%);
+            padding: 32px 20px 24px;
+            margin: 0 -16px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(59,130,246,0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 50%, rgba(139,92,246,0.1) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1) rotate(0deg); }
+            100% { transform: scale(1.1) rotate(3deg); }
+        }
+
+        .header h1 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #60a5fa, #a78bfa, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            margin-bottom: 8px;
+        }
+
+        .header .date {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            position: relative;
+        }
+
+        .header .update-time {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            position: relative;
+            margin-top: 4px;
+        }
+
+        /* 卡片样式 */
+        h2 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 24px 0 12px;
+            padding: 12px 16px;
+            background: linear-gradient(135deg, rgba(59,130,246,0.12), rgba(139,92,246,0.08));
+            border-left: 3px solid var(--accent-blue);
+            border-radius: 0 8px 8px 0;
+        }
+
+        h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 16px 0 8px;
+            padding: 8px 12px;
+            background: rgba(59,130,246,0.06);
+            border-radius: 6px;
+        }
+
+        h1 {
+            display: none; /* 隐藏MD中的顶级标题，用header替代 */
+        }
+
+        /* 段落 */
+        p {
+            margin: 8px 0;
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+        }
+
+        /* 表格 */
+        .table-wrap {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 12px 0;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            background: var(--bg-card);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        thead {
+            background: linear-gradient(135deg, rgba(59,130,246,0.2), rgba(139,92,246,0.15));
+        }
+
+        th {
+            padding: 10px 8px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-primary);
+            white-space: nowrap;
+            font-size: 0.82rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        td {
+            padding: 9px 8px;
+            border-bottom: 1px solid rgba(51,65,85,0.5);
+            color: var(--text-secondary);
+            font-size: 0.82rem;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover {
+            background: rgba(59,130,246,0.05);
+        }
+
+        /* 涨跌颜色 */
+        .up {
+            color: var(--color-up);
+            font-weight: 600;
+        }
+
+        .down {
+            color: var(--color-down);
+            font-weight: 600;
+        }
+
+        /* 引用块 */
+        blockquote {
+            margin: 12px 0;
+            padding: 12px 16px;
+            background: rgba(234,179,8,0.08);
+            border-left: 3px solid #eab308;
+            border-radius: 0 6px 6px 0;
+            color: #fbbf24;
+            font-size: 0.88rem;
+            line-height: 1.6;
+        }
+
+        /* 列表 */
+        ul {
+            margin: 8px 0;
+            padding-left: 20px;
+        }
+
+        li {
+            margin: 6px 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* 水平线 */
+        hr {
+            border: none;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+            margin: 20px 0;
+        }
+
+        /* 强调文字 */
+        strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* 底部免责声明 */
+        .footer {
+            margin-top: 32px;
+            padding: 16px;
+            background: rgba(239,68,68,0.06);
+            border: 1px solid rgba(239,68,68,0.15);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .footer p {
+            color: var(--text-muted);
+            font-size: 0.78rem;
+            line-height: 1.6;
+        }
+
+        /* 快捷导航 */
+        .nav-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 12px 0 20px;
+            padding: 10px 12px;
+            background: var(--bg-card);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .nav-bar a {
+            display: inline-block;
+            padding: 5px 12px;
+            background: rgba(59,130,246,0.1);
+            color: #60a5fa;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .nav-bar a:hover {
+            background: rgba(59,130,246,0.25);
+            transform: translateY(-1px);
+        }
+
+        /* 指标卡片 */
+        .index-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 12px 0;
+        }
+
+        .index-card {
+            background: var(--bg-card);
+            border-radius: 10px;
+            padding: 14px 12px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .index-card .name {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .index-card .value {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .index-card .change {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-top: 2px;
+        }
+
+        .index-card .change.up {
+            color: var(--color-up);
+        }
+
+        .index-card .change.down {
+            color: var(--color-down);
+        }
+
+        .index-card .volume {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* 回到顶部 */
+        .back-top {
+            position: fixed;
+            bottom: 24px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(59,130,246,0.4);
+            display: none;
+            z-index: 100;
+            transition: transform 0.2s;
+        }
+
+        .back-top:hover {
+            transform: scale(1.1);
+        }
+
+        /* 移动端优化 */
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 12px 32px;
+            }
+
+            .header {
+                padding: 24px 16px 20px;
+                margin: 0 -12px 16px;
+            }
+
+            .header h1 {
+                font-size: 1.35rem;
+            }
+
+            h2 {
+                font-size: 1.05rem;
+                padding: 10px 12px;
+                margin: 20px 0 10px;
+            }
+
+            h3 {
+                font-size: 0.95rem;
+            }
+
+            table {
+                font-size: 0.75rem;
+            }
+
+            th, td {
+                padding: 7px 5px;
+            }
+
+            .index-cards {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+
+            .index-card .value {
+                font-size: 1rem;
+            }
+
+            .nav-bar {
+                gap: 5px;
+                padding: 8px 10px;
+            }
+
+            .nav-bar a {
+                padding: 4px 10px;
+                font-size: 0.72rem;
+            }
+        }
+
+        /* 宽屏优化 */
+        @media (min-width: 768px) {
+            body {
+                font-size: 16px;
+            }
+
+            .container {
+                padding: 0 24px 48px;
+            }
+
+            .header {
+                padding: 40px 32px 28px;
+                margin: 0 -24px 24px;
+            }
+
+            .header h1 {
+                font-size: 1.9rem;
+            }
+
+            .index-cards {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>A股晨间分析日报</h1>
+            <div class="date">2026年09月25日</div>
+        </div>
+
+        <nav class="nav-bar">
+            <a href="#section-1">大盘概览</a>
+            <a href="#section-2">热门板块</a>
+            <a href="#section-3">资金动向</a>
+            <a href="#section-4">潜力股</a>
+            <a href="#section-5">个股策略</a>
+            <a href="#section-6">风险提示</a>
+        </nav>
+
+        <div id="report-content">
+<h1>📊 A股市场日报</h1>
+<p><strong>2026年9月25日（周五）· 基于9月24日收盘数据</strong></p>
+<blockquote>数据来源：东方财富妙想API（指数/行情/技术选股）、证券时报·数据宝、同花顺、Wind、东方财富、新浪财经、金融界等公开信息。数据均经真实来源核对，未做任何模拟或编造。</blockquote>
+<blockquote>⚠️ 说明：9月25日-27日为<strong>中秋假期休市</strong>，本报告为节前最后交易日（9/24）完整收盘复盘，供9月28日复牌前参考。</blockquote>
+<hr>
+<h2>一、大盘概览</h2>
+<div class="table-wrap"><table>
+  <thead><tr><th>指数</th><th>收盘点位</th><th>涨跌幅</th><th>成交额</th><th>趋势简述</th></tr></thead>
+  <tbody>
+    <tr><td>上证指数</td><td>3888.37</td><td><strong><span class="down">-1.22%</span></strong></td><td>7836亿</td><td>低开低走单边下行，失守3900整数关，收于全天最低，创8/19以来最大单日跌幅</td></tr>
+    <tr><td>深证成指</td><td>13316.97</td><td><strong><span class="down">-2.34%</span></strong></td><td>8697亿</td><td>全天弱势，收盘即最低点，科技权重集中拖累</td></tr>
+    <tr><td>创业板指</td><td>3288.95</td><td><strong><span class="down">-2.68%</span></strong></td><td>4142亿</td><td>领跌主要指数，失守3300关，创8/24以来最大单日跌幅</td></tr>
+    <tr><td>科创50</td><td>1621.87</td><td><strong><span class="down">-2.35%</span></strong></td><td>699.9亿</td><td>半导体/元件大幅回调拖累，同步走弱</td></tr>
+    <tr><td>北证50</td><td>——</td><td><strong><span class="down">-1.70%</span></strong></td><td>——</td><td>小盘题材普跌</td></tr>
+    <tr><td>沪深两市合计</td><td>——</td><td>——</td><td><strong>1.67万亿</strong></td><td>较前日<strong>缩量1116亿（<span class="down">-6.32%</span>）</strong>，9月第4次、年内第6次成交额不足1.7万亿</td></tr>
+  </tbody>
+</table></div>
+<ul>
+<li><strong>市场情绪</strong>：明显偏空（缩量普跌、节前避险）。上涨1120家（红盘率<strong>20.11%</strong>）、下跌4306家（占77.32%）、平盘143家，<strong>涨跌比约1:3.8</strong>，亏钱效应显著；涨幅超9%个股68只、跌幅超9%个股35只。</li>
+<li><strong>涨停/跌停</strong>：涨停<strong>52家</strong>、跌停<strong>15家</strong>，<strong>连板股13只</strong>；"华字辈"玄学炒作分化——新华文轩T字涨停晋级5连板、奥佳华4连板、内蒙新华断板反包走出7天6板，而后排中华媒控股连续2日跌停、华丽家族跌停、华远控股跌超9%。高位人气股超声电子、国芳集团、哈药股份跌停。</li>
+<li><strong>定性</strong>：9月24日为"<strong>节前避险、单边下行</strong>"行情——三大指数集体低开低走、收盘即全天最低。内外因素交织：①美联储理事巴尔释放<strong>鹰派信号</strong>，全球无风险利率同步上行，压制成长资产估值；②中秋国庆长假临近，<strong>资金避险降仓</strong>、场外资金不愿承接，市场进入存量博弈；③<strong>缺乏新主线</strong>，前期热点（PCB/光模块/CRO/贵金属/房地产）集中获利兑现。属典型"节前弱势"特征，非基本面突发恶化。</li>
+</ul>
+<hr>
+<h2>二、热门板块分析</h2>
+<h3>🔺 涨幅前五板块</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>排名</th><th>板块</th><th>涨幅</th><th>领涨龙头</th><th>上涨驱动</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>纺织制造</td><td><strong><span class="up">+1.54%</span></strong></td><td>华茂股份(一字2连板)、华升股份、华生科技、彩蝶实业</td><td>工信部等三部门发布《轻工纺织产业发展"十五五"规划》，政策催化+板块低位+出口订单预期修复</td></tr>
+    <tr><td>2</td><td>焦炭Ⅱ</td><td><strong><span class="up">+1.48%</span></strong></td><td>云煤能源(涨停)、辽宁能源(<span class="up">+3.7%</span>)、新集能源(<span class="up">+2.6%</span>)</td><td>焦煤供给约束仍强，开源证券称煤炭兼具"周期弹性+红利价值"，资金节前避险抱团</td></tr>
+    <tr><td>3</td><td>风电设备</td><td><strong><span class="up">+1.25%</span></strong>（另一口径<span class="up">+2.65%</span>）</td><td>吉鑫科技(涨停)、威力传动(涨近10%)、天能重工</td><td>国新办"十五五"发布会：2030年海上风电装机<strong>翻一番达1亿千瓦</strong>；9月上旬风电新增招标9.6GW（较8月全月<span class="up">+79.2%</span>）；德国批准《海上风电法》修正案，大金重工汉堡风能展拿大单</td></tr>
+    <tr><td>4</td><td>教育</td><td><strong><span class="up">+0.84%</span></strong></td><td>凯文教育、国新文化</td><td>教育消费复苏预期+低位防御属性，资金避险配置</td></tr>
+    <tr><td>5</td><td>城商行Ⅱ / 国有大行</td><td><strong><span class="up">+0.81%</span> / <span class="up">+0.64%</span></strong></td><td>重庆银行(<span class="up">+2.04%</span>)、南京银行(<span class="up">+1.88%</span>)、江苏银行(<span class="up">+1.57%</span>)</td><td>避险资金抱团高股息，银行全天强势护盘，对冲指数下行</td></tr>
+  </tbody>
+</table></div>
+<blockquote>补充：<strong>油气开采</strong>（隔夜布油涨3.86%映射）、<strong>煤炭开采+0.57%</strong>、<strong>出版+0.49%</strong>（新华文轩5连板、新华传媒/内蒙新华涨停）、<strong>个护用品+0.34%</strong>、<strong>港口航运</strong>（午后持续走高、厦门港务涨停）、<strong>军工电子/军工信息化</strong>（雷科防务、电科思仪20cm涨停）同步逆势活跃；<strong>申万一级仅4个微红</strong>——煤炭+0.63%（居首）、纺织服饰、银行、家用电器（涨幅均不到1%）。</blockquote>
+<h3>🔻 跌幅前五板块</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>排名</th><th>板块</th><th>跌幅</th><th>回调原因</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>贵金属</td><td><strong><span class="down">-5.03%</span></strong></td><td>美元走强+金价回落，避险属性阶段性失效，山东黄金等有色龙头重挫</td></tr>
+    <tr><td>2</td><td>元件（PCB/覆铜板）</td><td><strong><span class="down">-4.48%</span></strong></td><td>昨日科技领涨方向集中兑现，超声电子跌停、逸豪新材跌超10%，"一日游"特征明显</td></tr>
+    <tr><td>3</td><td>玻璃玻纤</td><td><strong><span class="down">-4.36%</span></strong></td><td>建材链同步走弱，前期强势方向获利回吐</td></tr>
+    <tr><td>4</td><td>非金属材料Ⅱ</td><td><strong><span class="down">-4.28%</span></strong></td><td>周期材料普跌，与地产链疲弱共振</td></tr>
+    <tr><td>5</td><td>工业金属（有色）</td><td><strong><span class="down">-3.76%</span></strong></td><td>隔夜伦铜承压+美元走强，有色金属整体<strong><span class="down">-3.53%</span></strong>居申万一级跌幅首位</td></tr>
+  </tbody>
+</table></div>
+<blockquote>概念跌幅居前：CPO/光模块（中际旭创-2.89%、主力净流出18.82亿居两市首位）、存储芯片、消费电子（京东方A-2.82%失守6元）、半导体、CRO/减肥药、白酒、房地产（华丽家族跌停）、HBM。<strong>申万一级21个行业跌幅超1%</strong>——有色金属-3.53%、电子/建筑材料/通信跌近3%，医药生物、房地产、电力设备同处弱势。</blockquote>
+<hr>
+<h2>三、资金动向分析</h2>
+<p><strong>今日（9月24日）</strong>：两市主力资金<strong>全天净流出289.76亿元</strong>（证券时报·数据宝/Wind口径），其中沪深300成分股净流出176.58亿；尾盘净流出51.16亿（沪深300尾盘净流出31.79亿）。</p>
+<ul>
+<li><strong>净流入（13个行业）</strong>：<strong>国防军工+15.80亿（居首）</strong>、家用电器+7.21亿、农林牧渔+4.72亿、汽车+4.61亿、纺织服饰+4.47亿、美容护理+3.27亿——<strong>方向明确切向"防御+低位"</strong>。</li>
+<li><strong>净流出（25个行业）</strong>：电子-108.63亿（居首，成交额4499.93亿仍居全市场首位）、通信-63.88亿、医药生物-37.52亿、有色金属-32.50亿、计算机-24.12亿。另一Wind实时口径显示电子净流出逾207亿、通信逾71亿、有色逾49亿（口径差异较大）。</li>
+<li><strong>个股</strong>：净流入前三 <strong>国瓷材料+8.88亿（居首，MLCC涨价催化）</strong>、雷科防务+7.04亿（VNA仪器）、平潭发展+6.24亿（海峡西岸），麦格米特+3.97亿、博云新材+3.82亿、海峡创新+3.80亿；净流出前三 <strong>中际旭创-18.82亿（居首）</strong>、东山精密-14.69亿、新易盛/胜宏科技/三环集团/阳光电源/罗博特科均超7亿，<strong>光模块三大龙头单日合计净流出超34亿</strong>。</li>
+</ul>
+<p><strong>近一周（9月18日-9月24日）</strong>：本周<strong>主力资金合计净流出961.18亿元</strong>（创业板-254.39亿、科创板-147.55亿、沪深300-405.97亿）；逐日看：9/21 +121.92亿 → 9/22 -207.72亿 → 9/23 -321.27亿 → 9/24 -554.11亿，<strong>流出规模逐日放大</strong>。申万一级仅9个上涨（房地产<span class="up">+2.28%</span>、煤炭<span class="up">+2.10%</span>居前），跌幅居前为有色金属<span class="down">-4.16%</span>、通信<span class="down">-3.05%</span>。<strong>仅6个行业获净流入</strong>——汽车+13.69亿（居首）、煤炭+7.89亿；<strong>25个行业净流出</strong>——电子-302.46亿（居首）、通信-155.61亿、有色/机械设备/电力设备居前。</p>
+<p><strong>近半月（约9月11日-9月24日）</strong>：呈"<strong>前流入、后流出</strong>"的明显拐点。9/14-9/18科技单周大幅回流（Wind口径电子<strong>+872.09亿</strong>居首、通信+276.38亿、机械+235.54亿、电力设备/医药生物超百亿；银行小幅净流出25.96亿）；而9/21-9/24科技转为大额流出（电子-302.46亿、通信-155.61亿）。<strong>半月合计电子仍为净流入但动能显著衰减</strong>，资金结构由"科技进攻"切向"红利防御+低位补涨"。</p>
+<p><strong>近一月（约8月25日-9月24日）</strong>：呈"<strong>前高后低、科技见顶回落</strong>"格局——9月初电子大幅流出（9/1、9/4单日流出均超200亿），9月中旬（9/14-9/18）科技资金大幅回流，9月下旬再度转为净流出且规模逐日扩大。全月累计看，<strong>电子/通信/半导体为主要吸金方向但已进入获利兑现期</strong>，<strong>银行/煤炭/公用/汽车等红利防御方向为资金低位承接方向</strong>；全月市场风格由"科技成长"逐步转向"红利防御"。</p>
+<blockquote>注：主力资金存在统计口径差异（证券时报数据宝-289.76亿 vs Wind实时-658亿 vs 妙想口径-658.5亿），本报告以数据宝/东财口径为主并标注差异；北向资金自2024年8月起已不实时披露净买入，改用两融口径：<strong>截至9/23两市融资余额26168.11亿（-0.04%）、融券余额296.94亿（-0.86%），两融余额约2.66万亿</strong>，杠杆资金节前小幅回落。</blockquote>
+<hr>
+<h2>四、技术形态潜力股</h2>
+<blockquote>筛选条件：<strong>股价站上5日/20日均线 + MACD/KDJ出现金叉或转强信号 + 量比>1（成交量温和放大）</strong>，且优先选取9/24逆势抗跌、与当日领涨主线（红利防御/风电/机器人/纺织/航运）共振的标的。以下价格均为<strong>9月24日收盘实价</strong>（经妙想API逐股核对，与选股器完全吻合）。</blockquote>
+<div class="table-wrap"><table>
+  <thead><tr><th>代码</th><th>名称</th><th>9/24收盘</th><th>入选理由</th><th>建议入场区间</th><th>止损位</th><th>预计两周目标涨幅</th></tr></thead>
+  <tbody>
+    <tr><td>603105</td><td>芯能科技</td><td>8.68</td><td>分布式光伏+绿电运营，KDJ金叉+MACD金叉双确认，量比1.50温和放量，逆势涨5.98%站上5日(8.35)/20日(8.07)均线，高股息防御属性</td></tr>
+    <tr><td>300569</td><td>天能重工</td><td>5.28</td><td>风电塔筒/海风基础，MACD+KDJ双金叉，量比2.74显著放量逆势涨6.88%，受益"十五五"海风装机翻番+招标放量政策催化</td></tr>
+    <tr><td>603767</td><td>中马传动</td><td>14.74</td><td>汽车变速器+机器人减速器，涨停突破，量比3.92大幅放量，站上5日(13.73)/20日(13.80)均线，特斯拉人形机器人主题催化</td></tr>
+    <tr><td>000905</td><td>厦门港务</td><td>9.81</td><td>港口航运+海峡西岸双主题，涨停突破，量比1.83，站上5日(9.37)/20日(9.14)均线，航运景气修复+福建板块资金承接</td></tr>
+    <tr><td>605008</td><td>长鸿高科</td><td>14.70</td><td>化工新材料（TPE/可降解塑料），MACD+KDJ双金叉，量比1.57温和放量，低位站上5日(14.38)/20日(13.87)均线，成本改善预期</td></tr>
+  </tbody>
+</table></div>
+<blockquote>研究推荐，仅供参考，不构成投资建议或持仓提示。所有个股均需结合复牌后盘中量能与大盘环境动态调整；节后大盘方向未明，建议以"回踩不破均线再介入"为主，忌追高。</blockquote>
+<hr>
+<h2>五、个股推荐与策略</h2>
+<blockquote>以下为不同投资风格的策略参考（与第四部分部分重叠），<strong>研究推荐，仅供参考</strong>。当前处节前避险、无主线环境，策略偏向"低吸防御+主题脉冲"，严格轻仓。</blockquote>
+<p><strong>1. 芯能科技（603105）— 稳健防御型（高股息/绿电）</strong></p>
+<ul>
+<li>策略：分布式光伏电站运营商，现金流稳定、估值低位，具"绿电+高股息"双重防御属性。9/24逆势放量站稳双均线，适合作为弱势市场的防御底仓，逢低吸纳、不追高。</li>
+<li>操作：入场 8.40~8.75；<strong>止盈</strong> 9.40 / 9.60两档；<strong>止损</strong> 8.00（跌破20日线）。</li>
+</ul>
+<p><strong>2. 国瓷材料（300285）— 资金驱动型（MLCC涨价链）</strong></p>
+<ul>
+<li>策略：电子陶瓷材料龙头，村田/太阳诱电/三星电机相继发布涨价函，AI服务器用高容量MLCC原厂涨幅15%<span class="down">-35%</span>，<strong>9/24主力净流入8.88亿居两市首位</strong>、股价逆势<span class="up">+1.45%</span>。属资金与产业逻辑共振的确定性方向。</li>
+<li>操作：入场 66~70；<strong>止盈</strong> 78 / 82；<strong>止损</strong> 63（跌破前低）。</li>
+</ul>
+<p><strong>3. 中马传动（603767）— 主题成长型（人形机器人）</strong></p>
+<ul>
+<li>策略：减速器/机器人执行器核心标的，受"马斯克称10年内人形机器人需求或达10亿台"催化，板块（襄阳轴承/宁波东力/长华集团）逆势涨停潮。弹性大、波动大，宜轻仓快进快出。</li>
+<li>操作：入场 13.80~14.50；<strong>止盈</strong> 16.5 / 17.5；<strong>止损</strong> 13.10。</li>
+</ul>
+<p><strong>4. 天能重工（300569）— 政策驱动型（海上风电）</strong></p>
+<ul>
+<li>策略：风电塔筒/海风基础制造，直接受益"2030年海风装机1亿千瓦"与"2026-2030国内海风新增超70GW"的确定性规划，叠加9月上旬招标环比大增79.2%。政策确定性高、位置低，适合中线配置。</li>
+<li>操作：入场 5.05~5.35；<strong>止盈</strong> 5.90 / 6.20；<strong>止损</strong> 4.80。</li>
+</ul>
+<p><strong>5. 厦门港务（000905）— 低估值轮动型（航运/海峡西岸）</strong></p>
+<ul>
+<li>策略：港口航运+福建自贸/海峡西岸双主题，全球物流运输景气度修复+区域主题资金承接，估值低、分红稳定。属低吸轮动品种，博取主题脉冲。</li>
+<li>操作：入场 9.30~9.90；<strong>止盈</strong> 10.60 / 11.00；<strong>止损</strong> 9.00。</li>
+</ul>
+<hr>
+<h2>六、风险提示与仓位建议</h2>
+<p><strong>仓位建议：三成至四成，谨慎参与、防御优先；节前建议控制在三成左右，节后再视政策与量能决定加减。</strong></p>
+<ul>
+<li><strong>量能与结构</strong>：今日成交<strong>1.67万亿</strong>，较前日缩量1116亿（<span class="down">-6.32%</span>），<strong>跌破1.7万亿关口</strong>，为9月第4次、年内第6次不足1.7万亿；量能持续萎缩下"放量反转"难以出现。上涨1120家 vs 下跌4306家，<strong>涨跌比约1:3.8</strong>，红盘率仅20%，亏钱效应显著，<strong>存量博弈下不宜追高、不宜重仓</strong>。</li>
+<li><strong>情绪面</strong>：52涨停/15跌停，连板股仅13只，<strong>连板高度5板（新华文轩）</strong>；"华字辈"玄学炒作出现分化（新华文轩5板 vs 华媒控股2连跌停），题材接力持续性弱、轮动加快。机构普遍判断市场或维持"<strong>无主线</strong>"状态，但"情绪底"或已构筑。</li>
+<li><strong>方向建议</strong>：短期优先<strong>红利防御（煤炭/银行/公用/石油）</strong>与<strong>政策确定性方向（海上风电/轻工纺织）</strong>；主题上关注<strong>人形机器人（减速器/执行器）</strong>、<strong>海峡西岸/福建本地股</strong>、<strong>军工信息化（VNA仪器）</strong>的脉冲机会；中长期可逢低布局<strong>通信/存储芯片</strong>等科技方向；<strong>规避贵金属（金价回落）、高位PCB/覆铜板与CPO光模块（兑现压力大）、房地产、白酒</strong>等弱势方向。</li>
+<li><strong>节假提示</strong>：9/24为<strong>中秋前最后一个交易日</strong>，<strong>9/25-9/27中秋休市、9/28恢复交易</strong>；随后<strong>10/1-10/8国庆休市、10/9恢复</strong>。双节之间仅9/28-9/30三个交易日，资金"节前流出、节后回流"特征明显。历史规律看，近十年A股国庆节后一周上涨概率接近60%，但节前最后几个交易日避险行为往往延续，<strong>建议控制仓位、保留现金弹性以应对假期外围不确定性</strong>。</li>
+<li><strong>隔夜外盘</strong>：9/24美股三大指数窄幅波动、收盘涨跌互现——<strong>道指51349.98(<span class="down">-0.31%</span>)、纳指26939.37(<span class="up">+0.01%</span>)、标普500 7704.13(<span class="down">-0.02%</span>)、费半12492.54(<span class="down">-0.33%</span>)</strong>。<strong>美联储理事巴尔释放鹰派信号</strong>，全球无风险利率同步上行，压制久期较长的成长资产估值，对电子/通信等海外流动性敏感板块构成情绪扰动。</li>
+<li><strong>政策面</strong>：①<strong>央行9/24开展大额中期借贷便利（MLF）操作</strong>，保障银行体系流动性合理充裕，稳定节前资金面；②国新办9/22"开局起步'十五五'"发布会——2030年海上风电装机翻番至1亿千瓦、海洋生物医药增加值突破1300亿；③<strong>工信部等三部门印发《轻工纺织产业发展"十五五"规划》</strong>（直接催化纺织制造）；④发改委会同推进"十五五"重大工程落地、加快激活民间投资；⑤工信部推进高端装备/新能源产业提质升级；⑥针对中小企业账款拖欠出台整治方案；⑦<strong>MLCC涨价</strong>（村田/太阳诱电/三星电机涨价函，AI服务器高容量MLCC涨15%<span class="down">-35%</span>）；⑧特斯拉人形机器人消息持续发酵。</li>
+</ul>
+<blockquote>⚠️ <strong>免责声明</strong>：本报告由AI基于公开信息自动整理生成，所有数据力求真实准确，仅供参考，<strong>不构成任何投资建议或个股推荐</strong>。文中"技术形态潜力股""个股推荐"均为研究性梳理，不代表任何实际持仓。投资有风险，决策需谨慎，请以监管机构及交易所正式披露信息为准。</blockquote>
+<hr>
+<p>*数据来源：东方财富妙想API、证券时报·数据宝、同花顺、Wind、东方财富、新浪财经、金融界、澎湃新闻等*</p>
+<p>*生成时间：2026-09-25*</p>
+        </div>
+
+        <div class="footer">
+            <p>⚠️ 本报告仅供研究参考，不构成投资建议。投资有风险，入市需谨慎。</p>
+            <p style="margin-top:4px;">数据来源：东方财富网 · 妙想API ｜ 自动生成</p>
+        </div>
+    </div>
+
+    <button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+    <script>
+        // 给 h2 添加 id 用于锚点导航
+        document.querySelectorAll('h2').forEach((h2, i) => {
+            h2.id = 'section-' + (i + 1);
+        });
+
+        // 回到顶部按钮
+        window.addEventListener('scroll', () => {
+            const btn = document.getElementById('backTop');
+            btn.style.display = window.scrollY > 300 ? 'block' : 'none';
+        });
+    </script>
+</body>
+</html>
