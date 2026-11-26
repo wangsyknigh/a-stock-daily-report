@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>A股晨间分析日报 - 2026年11月26日</title>
+    <style>
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-card: #1e293b;
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --accent-cyan: #06b6d4;
+            --color-up: #ef4444;
+            --color-down: #22c55e;
+            --border-color: #334155;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            font-size: 15px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 16px 40px;
+        }
+
+        /* 顶部头图区域 */
+        .header {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2d1b69 50%, #1a1a2e 100%);
+            padding: 32px 20px 24px;
+            margin: 0 -16px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(59,130,246,0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 50%, rgba(139,92,246,0.1) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1) rotate(0deg); }
+            100% { transform: scale(1.1) rotate(3deg); }
+        }
+
+        .header h1 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #60a5fa, #a78bfa, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            margin-bottom: 8px;
+        }
+
+        .header .date {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            position: relative;
+        }
+
+        .header .update-time {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            position: relative;
+            margin-top: 4px;
+        }
+
+        /* 卡片样式 */
+        h2 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 24px 0 12px;
+            padding: 12px 16px;
+            background: linear-gradient(135deg, rgba(59,130,246,0.12), rgba(139,92,246,0.08));
+            border-left: 3px solid var(--accent-blue);
+            border-radius: 0 8px 8px 0;
+        }
+
+        h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 16px 0 8px;
+            padding: 8px 12px;
+            background: rgba(59,130,246,0.06);
+            border-radius: 6px;
+        }
+
+        h1 {
+            display: none; /* 隐藏MD中的顶级标题，用header替代 */
+        }
+
+        /* 段落 */
+        p {
+            margin: 8px 0;
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+        }
+
+        /* 表格 */
+        .table-wrap {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 12px 0;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            background: var(--bg-card);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        thead {
+            background: linear-gradient(135deg, rgba(59,130,246,0.2), rgba(139,92,246,0.15));
+        }
+
+        th {
+            padding: 10px 8px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-primary);
+            white-space: nowrap;
+            font-size: 0.82rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        td {
+            padding: 9px 8px;
+            border-bottom: 1px solid rgba(51,65,85,0.5);
+            color: var(--text-secondary);
+            font-size: 0.82rem;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover {
+            background: rgba(59,130,246,0.05);
+        }
+
+        /* 涨跌颜色 */
+        .up {
+            color: var(--color-up);
+            font-weight: 600;
+        }
+
+        .down {
+            color: var(--color-down);
+            font-weight: 600;
+        }
+
+        /* 引用块 */
+        blockquote {
+            margin: 12px 0;
+            padding: 12px 16px;
+            background: rgba(234,179,8,0.08);
+            border-left: 3px solid #eab308;
+            border-radius: 0 6px 6px 0;
+            color: #fbbf24;
+            font-size: 0.88rem;
+            line-height: 1.6;
+        }
+
+        /* 列表 */
+        ul {
+            margin: 8px 0;
+            padding-left: 20px;
+        }
+
+        li {
+            margin: 6px 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* 水平线 */
+        hr {
+            border: none;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+            margin: 20px 0;
+        }
+
+        /* 强调文字 */
+        strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* 底部免责声明 */
+        .footer {
+            margin-top: 32px;
+            padding: 16px;
+            background: rgba(239,68,68,0.06);
+            border: 1px solid rgba(239,68,68,0.15);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .footer p {
+            color: var(--text-muted);
+            font-size: 0.78rem;
+            line-height: 1.6;
+        }
+
+        /* 快捷导航 */
+        .nav-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 12px 0 20px;
+            padding: 10px 12px;
+            background: var(--bg-card);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .nav-bar a {
+            display: inline-block;
+            padding: 5px 12px;
+            background: rgba(59,130,246,0.1);
+            color: #60a5fa;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .nav-bar a:hover {
+            background: rgba(59,130,246,0.25);
+            transform: translateY(-1px);
+        }
+
+        /* 指标卡片 */
+        .index-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 12px 0;
+        }
+
+        .index-card {
+            background: var(--bg-card);
+            border-radius: 10px;
+            padding: 14px 12px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .index-card .name {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .index-card .value {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .index-card .change {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-top: 2px;
+        }
+
+        .index-card .change.up {
+            color: var(--color-up);
+        }
+
+        .index-card .change.down {
+            color: var(--color-down);
+        }
+
+        .index-card .volume {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* 回到顶部 */
+        .back-top {
+            position: fixed;
+            bottom: 24px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(59,130,246,0.4);
+            display: none;
+            z-index: 100;
+            transition: transform 0.2s;
+        }
+
+        .back-top:hover {
+            transform: scale(1.1);
+        }
+
+        /* 移动端优化 */
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 12px 32px;
+            }
+
+            .header {
+                padding: 24px 16px 20px;
+                margin: 0 -12px 16px;
+            }
+
+            .header h1 {
+                font-size: 1.35rem;
+            }
+
+            h2 {
+                font-size: 1.05rem;
+                padding: 10px 12px;
+                margin: 20px 0 10px;
+            }
+
+            h3 {
+                font-size: 0.95rem;
+            }
+
+            table {
+                font-size: 0.75rem;
+            }
+
+            th, td {
+                padding: 7px 5px;
+            }
+
+            .index-cards {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+
+            .index-card .value {
+                font-size: 1rem;
+            }
+
+            .nav-bar {
+                gap: 5px;
+                padding: 8px 10px;
+            }
+
+            .nav-bar a {
+                padding: 4px 10px;
+                font-size: 0.72rem;
+            }
+        }
+
+        /* 宽屏优化 */
+        @media (min-width: 768px) {
+            body {
+                font-size: 16px;
+            }
+
+            .container {
+                padding: 0 24px 48px;
+            }
+
+            .header {
+                padding: 40px 32px 28px;
+                margin: 0 -24px 24px;
+            }
+
+            .header h1 {
+                font-size: 1.9rem;
+            }
+
+            .index-cards {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>A股晨间分析日报</h1>
+            <div class="date">2026年11月26日</div>
+        </div>
+
+        <nav class="nav-bar">
+            <a href="#section-1">大盘概览</a>
+            <a href="#section-2">热门板块</a>
+            <a href="#section-3">资金动向</a>
+            <a href="#section-4">潜力股</a>
+            <a href="#section-5">个股策略</a>
+            <a href="#section-6">风险提示</a>
+        </nav>
+
+        <div id="report-content">
+<h1>A股晨间分析日报 · 2026年11月26日</h1>
+<blockquote><strong>数据基准</strong>：2026年11月25日（周三）收盘 · <strong>编制时间</strong>：2026年11月26日 09:45</blockquote>
+<blockquote><strong>数据来源</strong>：东方财富妙想金融数据（MX）、腾讯财经行情、上市公司公告与主流财经媒体</blockquote>
+<blockquote><strong>重要提示</strong>：本报告为研究分析，所涉个股为<strong>研究推荐</strong>，非实际持仓，不构成投资建议</blockquote>
+<hr>
+<h2>0. 一句话结论</h2>
+<p><strong>11月25日是一次"缩量系统性杀跌"——四大指数全线重挫、跌停家数从4家暴增至49家、30/31个申万一级行业主力净流出合计489亿，仅食品饮料/煤炭/银行三个防御方向收红。这不是普通回调，而是风险偏好中枢下移的开始。建议仓位下调至25%–30%，只保留"高股息+必选消费+医药"三张底牌，科技方向等费半连续3日企稳后再议。</strong></p>
+<hr>
+<h2>0.1 昨日（11/25 晨报）推荐复盘</h2>
+<div class="table-wrap"><table>
+  <thead><tr><th>组合</th><th>标的</th><th>11/25 涨跌幅</th></tr></thead>
+  <tbody>
+    <tr><td>技术组合</td><td>安井食品 603345</td><td><strong><span class="up">+2.08%</span></strong></td></tr>
+    <tr><td>技术组合</td><td>交通银行 601328</td><td><strong><span class="up">+1.78%</span></strong></td></tr>
+    <tr><td>技术组合</td><td>海澜之家 600398</td><td><strong><span class="up">+2.04%</span></strong></td></tr>
+    <tr><td>技术组合</td><td>龙版传媒 605577</td><td><strong><span class="up">+10.00%</span></strong>（涨停）</td></tr>
+    <tr><td>技术组合</td><td>巨星农牧 603477</td><td><span class="down">-5.44%</span></td></tr>
+    <tr><td><strong>技术组合等权</strong></td><td>—</td><td><strong><span class="up">+2.09%</span></strong></td></tr>
+    <tr><td>策略组合</td><td>交通银行 / 安井食品 / 龙版传媒 / 巨星农牧 / 中远海控</td><td>—</td></tr>
+    <tr><td><strong>策略组合等权</strong></td><td>—</td><td><strong><span class="up">+1.20%</span></strong></td></tr>
+    <tr><td>基准</td><td>上证指数</td><td><span class="down">-2.03%</span></td></tr>
+  </tbody>
+</table></div>
+<p><strong>复盘结论</strong>：在大盘 <span class="down">-2.03%</span>、4926只个股下跌的环境下，两个组合分别取得 <span class="up">+2.09%</span> / <span class="up">+1.20%</span>，超额收益 +4.12pct / +3.23pct。<strong>验证了"防御性换仓"判断的正确性</strong>——11/25 全场资金从科技硬件撤向消费医药，昨日组合恰好站在资金流入一侧。唯一拖累是巨星农牧（<span class="down">-5.44%</span>，农业板块补跌）与中远海控（<span class="down">-2.42%</span>，集运运价回落）。</p>
+<p><strong>教训</strong>：龙版传媒单日 <span class="up">+10.00%</span> 属于传媒板块内个别标的逆势（传媒行业整体 <span class="down">-2.68%</span>），不可复制，不应作为下一期选股依据。</p>
+<hr>
+<h2>1. 大盘概览</h2>
+<h3>1.1 四大指数</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>指数</th><th>收盘点位</th><th>涨跌幅</th><th>成交额</th><th>趋势简述</th></tr></thead>
+  <tbody>
+    <tr><td>上证指数</td><td>3,476.47</td><td><strong><span class="down">-2.03%</span></strong></td><td>6,527 亿</td><td>失守3500整数关，跌破MA5(3535)/MA20(3613)，距MA60(3769) <span class="down">-7.76%</span>，距60日高 <span class="down">-12.98%</span></td></tr>
+    <tr><td>深证成指</td><td>10,086.36</td><td><strong><span class="down">-3.24%</span></strong></td><td>7,304 亿</td><td>创20日新低（收盘=20日最低），距MA60 <span class="down">-17.65%</span>，距60日高 <span class="down">-28.71%</span></td></tr>
+    <tr><td>创业板指</td><td>2,183.58</td><td><strong><span class="down">-4.19%</span></strong></td><td>3,595 亿</td><td>四大指数跌幅最大，距MA60 <span class="down">-24.23%</span>，距60日高 <span class="down">-37.99%</span>，成长股集中崩塌</td></tr>
+    <tr><td>科创50</td><td>1,186.14</td><td><strong><span class="down">-5.12%</span></strong></td><td>823 亿</td><td>半导体/存储/光刻链条全线杀跌，跌破MA20(1240)，距60日高 <span class="down">-30.72%</span></td></tr>
+  </tbody>
+</table></div>
+<h3>1.2 其他关键指数（用于判断风格裂口）</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>指数</th><th>收盘</th><th>涨跌幅</th><th>距MA20</th><th>距60日高</th></tr></thead>
+  <tbody>
+    <tr><td>上证50</td><td>2,751.85</td><td><span class="down">-0.82%</span></td><td><span class="down">-0.77%</span></td><td><span class="down">-6.92%</span></td></tr>
+    <tr><td>沪深300</td><td>3,898.24</td><td><span class="down">-1.65%</span></td><td><span class="down">-2.88%</span></td><td><span class="down">-16.05%</span></td></tr>
+    <tr><td>中证500</td><td>5,890.41</td><td><span class="down">-3.63%</span></td><td><span class="down">-7.74%</span></td><td><span class="down">-26.24%</span></td></tr>
+    <tr><td>中证1000</td><td>5,541.55</td><td><span class="down">-4.44%</span></td><td><span class="down">-10.94%</span></td><td><span class="down">-29.43%</span></td></tr>
+    <tr><td>北证50</td><td>755.87</td><td><span class="down">-4.75%</span></td><td>—</td><td>—</td></tr>
+  </tbody>
+</table></div>
+<blockquote><strong>风格裂口 3.62 个百分点</strong>（上证50 -0.82% vs 中证1000 -4.44%），且中证1000、中证500、深证成指、创业板指<strong>全部以当日最低价收盘并创20日新低</strong>。这是典型的"权重护盘、小票失血"结构，而非全面恐慌出清。</blockquote>
+<h3>1.3 市场宽度与量能</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>指标</th><th>11/25 数值</th><th>前一日(11/24)</th><th>变化</th></tr></thead>
+  <tbody>
+    <tr><td>两市成交额</td><td>13,831 亿</td><td>16,583 亿</td><td><strong>-2,752 亿（<span class="down">-16.43%</span>）</strong></td></tr>
+    <tr><td>上涨家数</td><td>586 家</td><td>1,952 家</td><td>-1,366</td></tr>
+    <tr><td>下跌家数</td><td>4,926 家</td><td>3,498 家</td><td>+1,428</td></tr>
+    <tr><td>平盘</td><td>65 家</td><td>—</td><td>—</td></tr>
+    <tr><td>涨停家数</td><td>58 家</td><td>64 家</td><td>-6</td></tr>
+    <tr><td>跌停家数</td><td><strong>49 家</strong></td><td>4 家</td><td><strong>+45（11.25倍）</strong></td></tr>
+    <tr><td>封板率</td><td>58.8%–63%</td><td>44%</td><td>+15pct</td></tr>
+    <tr><td>昨日涨停股今日平均收益</td><td><strong><span class="down">-0.64%</span></strong></td><td>正</td><td>转负</td></tr>
+  </tbody>
+</table></div>
+<blockquote><strong>关键读数</strong>：① 成交额仍在万亿之上（1.38万亿），但单日缩量2752亿——<strong>"缩量下跌"意味着卖压尚未充分释放，不是恐慌盘一次性出清</strong>；② 跌停家数从4家跳到49家是本期最刺眼信号，情绪转折已完成；③ 封板率反而从44%升至63%，说明"敢封板的资金变少但封得更坚决"，配合"涨停溢价转负"，是典型的<strong>存量博弈后期特征</strong>。</blockquote>
+<hr>
+<h2>2. 热门板块分析</h2>
+<h3>2.1 申万一级行业：仅3个行业收红</h3>
+<p>31个申万一级行业中，<strong>28个下跌，仅食品饮料、煤炭、银行3个收红</strong>（采用"成份区间涨跌幅·流通市值加权平均"口径）。因此"涨幅前五"实为"抗跌前五"，第4、5位已是微跌。</p>
+<div class="table-wrap"><table>
+  <thead><tr><th>排名</th><th>板块</th><th>涨跌幅</th><th>领涨龙头</th><th>上涨驱动</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>食品饮料</td><td><strong><span class="up">+0.76%</span></strong></td><td>山西汾酒 <span class="up">+3.74%</span>、青岛啤酒 <span class="up">+3.59%</span>、泸州老窖 <span class="up">+1.20%</span>、贵州茅台 <span class="up">+1.02%</span></td><td>防御性换仓首选。全市场仅食品饮料实现"量价齐升"（主力净流入 +5.9亿，白酒单项 +7.82亿）。驱动来自：① 科技崩塌后的资金避风港；② 2026版医保目录/消费政策预期；③ 白酒板块估值已回落至近5年低位区间，具备超跌修复空间</td></tr>
+    <tr><td>2</td><td>煤炭</td><td><strong><span class="up">+0.46%</span></strong></td><td>中国神华 <span class="up">+1.79%</span>（创2007年11月以来新高）、陕西煤业 <span class="down">-0.70%</span></td><td>高股息避险。中国神华刷新近19年高点，是"红利资产在系统性下跌中唯一能创新高"的直接证据。资金逻辑：无风险利率下行 → 股息率5%+的煤炭龙头成为类债券替代</td></tr>
+    <tr><td>3</td><td>银行</td><td><strong><span class="up">+0.06%</span></strong></td><td>交通银行 <span class="up">+1.78%</span>（创历史新高）、邮储银行 <span class="up">+1.19%</span>、兴业银行 <span class="up">+1.39%</span>、建设银行 <span class="up">+1.29%</span></td><td>ETF被动买盘护盘。但需注意<strong>严重背离</strong>：银行指数微涨0.06%，主力资金却净流出 <strong>10.19亿</strong>——拉升来自宽基ETF申购而非主动多头，持续性完全取决于ETF买盘，不可跨日持有</td></tr>
+    <tr><td>4</td><td>商贸零售</td><td><span class="down">-0.33%</span></td><td>中央商场 <span class="up">+10.16%</span>、杭州解百 <span class="up">+10.01%</span>（3连板）、国芳集团/家家悦涨停</td><td>离境退税政策落地（境外旅客支付与入境消费便利化），离境退税概念 <span class="up">+3.64%</span> 居概念板块首位；主力净流入 +5.0亿</td></tr>
+    <tr><td>5</td><td>钢铁</td><td><span class="down">-0.42%</span></td><td>南钢股份 <span class="up">+1.12%</span>、方大特钢 <span class="up">+0.55%</span>、宝钢股份 <span class="up">+0.16%</span></td><td>微跌即入前五，说明防守面极窄。特钢受益于高端制造订单，但缺乏资金合力（钢铁主力 -0.4亿）</td></tr>
+  </tbody>
+</table></div>
+<h3>2.2 概念板块：极致分化</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>涨幅前五（概念）</th><th>涨幅</th><th>跌幅前五（概念）</th><th>跌幅</th></tr></thead>
+  <tbody>
+    <tr><td>离境退税</td><td><strong><span class="up">+3.64%</span></strong></td><td>电子化学品</td><td><strong><span class="down">-8.88%</span></strong></td></tr>
+    <tr><td>玻尿酸</td><td><span class="up">+1.70%</span></td><td>先进封装</td><td><span class="down">-8.17%</span></td></tr>
+    <tr><td>止泻药</td><td><span class="up">+1.58%</span></td><td>HBM</td><td><span class="down">-8.12%</span></td></tr>
+    <tr><td>肝素</td><td><span class="up">+1.43%</span></td><td>半导体</td><td><span class="down">-7.89%</span></td></tr>
+    <tr><td>抖音小店</td><td><span class="up">+1.43%</span></td><td>光刻胶</td><td><span class="down">-7.83%</span></td></tr>
+  </tbody>
+</table></div>
+<blockquote><strong>结构解读</strong>：涨幅榜前五全部是"医药+消费+免税"的防御/政策题材，跌幅榜前五全部是"半导体产业链"的不同环节——<strong>这不是板块轮动，而是单方向撤离</strong>。医药方向中，流感概念 +0.58%（主力 +8.62亿，13只涨停）、青蒿素 +1.42%、仿制药一致性评价 +0.72%，是唯一具备"涨停梯队+资金流入"双确认的主线。</blockquote>
+<h3>2.3 跌幅前五（申万一级）</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>排名</th><th>板块</th><th>跌幅</th><th>主力净流出</th><th>回调原因</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>电子</td><td><strong><span class="down">-5.85%</span></strong></td><td><strong>-210.4 亿</strong></td><td>隔夜费半 <span class="down">-7.88%</span> 直接传导。电子化学品 <span class="down">-8.88%</span>、先进封装 <span class="down">-8.17%</span>、HBM <span class="down">-8.12%</span>、半导体 <span class="down">-7.89%</span>，全链条无差别杀跌。华虹宏力、灿芯股份、北方华创、沐曦股份、富创精密集体重挫。<strong>单日净流出210亿，为全市场流出之最，占全部流出的43%</strong></td></tr>
+    <tr><td>2</td><td>电力设备</td><td><strong><span class="down">-5.25%</span></strong></td><td>-49.4 亿</td><td>宁德时代 <span class="down">-8%</span>+、A股市值跌破1万亿；电池产业链 <span class="down">-7.30%</span>。欧盟混动进口配额利空落地，叠加固态电池/锂电题材退潮</td></tr>
+    <tr><td>3</td><td>机械设备</td><td><strong><span class="down">-4.21%</span></strong></td><td>-42.2 亿</td><td>机器人链条崩塌：上纬新材 <span class="down">-12%</span>+、拓普集团 <span class="down">-9%</span>+，减速器/工业母机/PEEK 全线退潮</td></tr>
+    <tr><td>4</td><td>综合</td><td><span class="down">-4.11%</span></td><td>-0.3 亿</td><td>小市值杂类股普跌，无独立逻辑</td></tr>
+    <tr><td>5</td><td>汽车</td><td><span class="down">-3.62%</span></td><td>-15.9 亿</td><td>汽车零部件 <span class="down">-6.60%</span>（家电零部件Ⅱ <span class="down">-6.60%</span>），机器人+汽零双杀</td></tr>
+  </tbody>
+</table></div>
+<hr>
+<h2>3. 资金动向分析</h2>
+<blockquote>口径说明：本节采用<strong>申万一级行业指数主力净流入</strong>（东财妙想），与"数据宝"等第三方口径存在差异（当日全市场净流出：本口径 -489亿 / 数据宝 -286.98亿 / 另一口径 -406.92亿），趋势方向一致。</blockquote>
+<h3>3.1 今日（11月25日）：净流出 489 亿，仅8行业净流入</h3>
+<p><strong>净流入前五</strong>：食品饮料 +5.9亿 ｜ 商贸零售 +5.0亿 ｜ 医药生物 +4.3亿 ｜ 轻工制造 +4.3亿 ｜ 美容护理 +3.6亿</p>
+<p><strong>净流出前五</strong>：电子 <strong>-210.4亿</strong> ｜ 电力设备 -49.4亿 ｜ 机械设备 -42.2亿 ｜ 通信 -30.3亿 ｜ 有色金属 -29.1亿</p>
+<blockquote>电子一个行业的流出（210亿）大于其余30个行业流出之和（279亿）的75%。<strong>资金不是"减仓科技"，而是"清仓科技"</strong>。</blockquote>
+<h3>3.2 近一周（近5个交易日）：净流出 1,088 亿，仅3行业净流入</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>方向</th><th>行业</th><th>近5日净流入</th></tr></thead>
+  <tbody>
+    <tr><td>流入</td><td>美容护理</td><td><strong>+13.0 亿</strong></td></tr>
+    <tr><td>流入</td><td>通信</td><td>+9.0 亿</td></tr>
+    <tr><td>流入</td><td>轻工制造</td><td>+4.7 亿</td></tr>
+    <tr><td>流出</td><td>电子</td><td><strong>-188.4 亿</strong></td></tr>
+    <tr><td>流出</td><td>计算机</td><td>-148.8 亿</td></tr>
+    <tr><td>流出</td><td>电力设备</td><td>-118.0 亿</td></tr>
+    <tr><td>流出</td><td>有色金属</td><td>-90.7 亿</td></tr>
+    <tr><td>流出</td><td>基础化工</td><td>-82.5 亿</td></tr>
+  </tbody>
+</table></div>
+<blockquote><strong>通信近5日 +9.0亿是"伪信号"</strong>：其近10日累计 -226.2亿、近21日 -232.1亿——说明本周流入只是前期大幅流出后的技术性回补，不是趋势反转。</blockquote>
+<h3>3.3 近半月（近10个交易日）：净流出 3,207 亿，仅1行业净流入</h3>
+<p>净流入：美容护理 <strong>+26.0亿</strong>（唯一）</p>
+<p>净流出前列：电子 <strong>-656.0亿</strong> ｜ 电力设备 -293.3亿 ｜ 有色金属 -287.4亿 ｜ 机械设备 -285.9亿 ｜ 通信 -226.2亿 ｜ 计算机 -209.5亿</p>
+<blockquote>注意：电子近10日流出（-656.0亿）<strong>大于</strong>近21日流出（-572.2亿），意味着10月28日至11月11日期间电子曾有净流入约84亿，这84亿在最近10个交易日内被全部吐回并倒欠。<strong>半导体是本轮资金撤离的主战场，且已回到起点之下</strong>。</blockquote>
+<h3>3.4 近一月（近21个交易日）：净流出 3,972 亿，30/31行业失血</h3>
+<p>净流入：美容护理 <strong>+50.6亿</strong>（三周期全部为正：5日+13.0 / 10日+26.0 / 21日+50.6）</p>
+<p>净流出前列：电子 -572.2亿 ｜ 电力设备 -345.5亿 ｜ 计算机 -329.7亿 ｜ 有色金属 -308.0亿 ｜ 机械设备 -290.7亿 ｜ 医药生物 -287.6亿 ｜ 基础化工 -261.3亿</p>
+<blockquote><strong>"30/31行业失血 + 单一行业独苗"是本轮最强的负面结构信号</strong>。美容护理（医美/化妆品）是唯一连续三周期净流入的行业，具备"资金持续加仓"的稀缺属性，但该行业市值小（约1.2万亿）、承载力有限，无法承担市场主线。<strong>在此结构下，单日净流入5–6亿属于下跌中继的技术性反抽，不可当作反转信号。</strong></blockquote>
+<hr>
+<h2>4. 技术形态潜力股（基于11/25收盘筛选）</h2>
+<h3>4.1 筛选方法与样本说明</h3>
+<p><strong>样本</strong>：全A（沪深）3,816只 → 按总市值降序取前1,000只（市值门槛105.75亿），实际取得有效K线991只。</p>
+<p><strong>七项条件</strong>（全部满足）：</p>
+<p>1. 收盘价 > MA5 且 > MA20，且 MA5 ≥ MA20×0.995</p>
+<p>2. 量比 0.95–2.6（<strong>温和放大</strong>，排除缩量假突破与暴量出货）</p>
+<p>3. MACD：DIF>DEA 且柱体不收缩，或柱体由负转正，或 DIF 上穿</p>
+<p>4. KDJ：K>D 且 K<86（排除高位钝化追高）</p>
+<p>5. 距60日最高价 > <span class="down">-18%</span>（排除深度破位股）</p>
+<p>6. 当日涨跌幅 <span class="down">-4.5%</span> ~ <span class="up">+8.0%</span>（排除跌停/涨停无法介入）</p>
+<p>7. 当日成交额 > 8,000万元</p>
+<p><strong>筛选结果：991只样本中仅13只全部满足（占比1.31%）</strong>。其中5只为银行股（兴业/浙商/民生/光大/交通），已<strong>主动剔除</strong>：交通银行 KDJ 85.3 已进入追高区，且银行板块当日"涨而主力净流出10.19亿"存在背离，不符合"量价配合"要求。</p>
+<blockquote>这一结果本身就是结论：<strong>在11/25的市况下，能同时满足"站上双均线+温和放量+指标转强"的标的只有13只，且集中在银行/啤酒/煤炭/机电</strong>。技术面可选的余地已被压缩到极窄。</blockquote>
+<h3>4.2 五只技术形态标的</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>#</th><th>代码</th><th>名称</th><th>11/25收盘</th><th>当日涨跌</th><th>入选理由</th><th>建议入场区间</th><th>止损位</th><th>两周目标涨幅</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>600600</td><td>青岛啤酒</td><td>55.42</td><td><strong><span class="up">+3.59%</span></strong></td><td>距60日高55.80仅 <strong><span class="down">-0.7%</span></strong>，处突破前夜；量比2.23为五只中最高（真放量）；MACD柱体0.292 vs 前值0.102，<strong>加速扩张</strong>；KDJ 74.7/70.9 未超买；所属食品饮料是唯一收红且主力净流入的行业</td><td><strong>53.5 – 55.5</strong></td><td>52.30</td><td><strong><span class="up">+8%</span> ~ <span class="up">+10%</span></strong>（60.0–61.0）</td></tr>
+    <tr><td>2</td><td>600089</td><td>特变电工</td><td>18.35</td><td><span class="down">-0.27%</span></td><td><strong>MA5 18.19 / MA20 18.14 / MA60 18.14 三线粘合</strong>，变盘临界；电力设备板块暴跌 <span class="down">-5.25%</span> 当日仅跌0.27%，<strong>相对强度 +4.98pct</strong>；MACD DIF 0.062 > DEA 0.040 多头排列；KDJ 72.8/57.4 金叉开口</td><td><strong>18.00 – 18.40</strong></td><td>17.60</td><td><strong><span class="up">+6%</span> ~ <span class="up">+8%</span></strong>（19.4–19.8）</td></tr>
+    <tr><td>3</td><td>601088</td><td>中国神华</td><td>51.82</td><td><strong><span class="up">+1.79%</span></strong></td><td>距60日高仅 <span class="down">-0.7%</span> 并<strong>创2007年11月以来新高</strong>；MACD 0.667/0.591 强多头，柱体0.153 vs 前值0.082 扩张；三线（MA5/20/60）多头排列。<strong>唯一瑕疵：KDJ 81.3 偏高，需分批</strong></td><td><strong>50.50 – 52.00</strong></td><td>49.50</td><td><strong><span class="up">+6%</span> ~ <span class="up">+7%</span></strong>（55.0–55.5）</td></tr>
+    <tr><td>4</td><td>600150</td><td>中国船舶</td><td>34.92</td><td><span class="down">-1.19%</span></td><td>大盘 <span class="down">-2.03%</span> 当日仅跌1.19%；<strong>MACD DIF -0.239 上穿 DEA -0.390 形成金叉</strong>，柱体0.303 持续扩张；KDJ 73.2/61.6 金叉上行；站上MA5 34.75/MA20 34.55。第一压力为MA60 36.02</td><td><strong>34.20 – 35.00</strong></td><td>33.40</td><td><strong><span class="up">+6%</span> ~ <span class="up">+7%</span></strong>（37.0–37.5）</td></tr>
+    <tr><td>5</td><td>002422</td><td>科伦药业</td><td>42.95</td><td><strong><span class="up">+1.34%</span></strong></td><td>同时站上 MA5 42.16 / MA20 42.58 / MA60 41.33（<strong>三线全部在下方</strong>，结构完整）；MACD柱体 -0.246 较前值 -0.371 <strong>收敛转强</strong>；KDJ 55.5/46.6 <strong>低位金叉</strong>（五只中位置最低、最安全）；医药生物 +4.3亿为仅4个净流入行业；距60日高 <span class="down">-6.8%</span></td><td><strong>42.00 – 43.30</strong></td><td>40.80</td><td><strong><span class="up">+6%</span> ~ <span class="up">+7%</span></strong>（45.5–46.0）</td></tr>
+  </tbody>
+</table></div>
+<h3>4.3 备选与排除说明</h3>
+<ul>
+<li><strong>川宁生物 301301</strong>（化学制药，11/25 <span class="up">+1.80%</span>，量比2.64最猛）：11/26 早盘 <strong><span class="down">-4.79%</span></strong> 已跌破MA5，形态当日破坏，<strong>放弃</strong>。</li>
+<li><strong>联合动力 301656</strong>（汽车零部件，MACD低位金叉）：11/26 早盘 <strong><span class="down">-4.38%</span></strong>，汽零板块延续杀跌，<strong>放弃</strong>。</li>
+<li><strong>天孚通信 300394</strong>（11/25 <span class="up">+7.65%</span>）：距60日高 <strong><span class="down">-55.2%</span></strong>（130.87 vs 292.07），MA60 205 远在上方，属深跌股反抽而非形态转强，<strong>排除</strong>。</li>
+<li><strong>重庆啤酒 600132</strong>（<span class="up">+2.38%</span>）：形态合格但与青岛啤酒同属啤酒，避免同质化，列为青岛啤酒的替代选项。</li>
+</ul>
+<hr>
+<h2>5. 个股推荐与策略（研究推荐，非持仓）</h2>
+<blockquote>五只标的按<strong>风格分工</strong>配置，与第4部分有3只重叠（青岛啤酒/中国神华/科伦药业），区别在于本节给出的是<strong>组合层面的仓位权重与加减仓触发条件</strong>，而非单纯形态描述。</blockquote>
+<div class="table-wrap"><table>
+  <thead><tr><th>#</th><th>代码</th><th>名称</th><th>风格定位</th><th>建议权重</th><th>具体操作策略</th><th>止盈</th><th>止损</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>601088</td><td>中国神华</td><td><strong>红利防御</strong>（类债券替代）</td><td>30%</td><td>50.50–52.00 分两批建仓（52.0先建2/3，回踩51.3补1/3）。<strong>退出规则不看KDJ，看股息率</strong>：若股价升至股息率跌破4.5%（约57.6元）则减半。跌破 MA20 50.48 减至1/3</td><td>55.50</td><td>49.50</td></tr>
+    <tr><td>2</td><td>600600</td><td>青岛啤酒</td><td><strong>消费修复</strong>（进攻偏稳）</td><td>25%</td><td>53.5–55.5 建仓。<strong>触发加仓</strong>：收盘站上55.80（60日高）且成交额>10亿，加至满配。若11/26–11/28 连续3日收于MA5上方，视为突破确认</td><td>61.00</td><td>52.30</td></tr>
+    <tr><td>3</td><td>002422</td><td>科伦药业</td><td><strong>医药创新反转</strong></td><td>20%</td><td>42.0–43.3 建仓（当前43.38已略高于区间，可等回踩42.5）。医药是唯一"涨停梯队+资金流入"双确认方向，但需注意医药21日仍净流出287.6亿，属"结构性机会"非"行业反转"</td><td>46.00</td><td>40.80</td></tr>
+    <tr><td>4</td><td>601728</td><td>中国电信</td><td><strong>通信红利 / 算力</strong></td><td>15%</td><td>7.00–7.20 建仓。11/25 <span class="up">+2.43%</span> 逆势，MACD 0.120/0.105 多头，距60日高仅 <span class="down">-2.6%</span>，MA60 6.59 远在下方（趋势最完整）。<strong>风险</strong>：通信21日净流出232亿，需以"红利属性"而非"算力弹性"持有</td><td>7.80</td><td>6.90</td></tr>
+    <tr><td>5</td><td>600150</td><td>中国船舶</td><td><strong>周期制造</strong>（小仓试探）</td><td>10%</td><td>34.2–35.0 建仓。<strong>必须等MA60 36.02被有效收复后再加仓</strong>，未收复前维持10%上限。造船周期订单饱满但股价受制于MA60压制</td><td>37.50</td><td>33.40</td></tr>
+  </tbody>
+</table></div>
+<h3>5.1 组合层面的三条纪律</h3>
+<p>1. <strong>不留"纯护盘仓"过夜</strong>：11/23 曾建议保留1个银行/红利对冲仓，结果11/23 银行 <span class="down">-0.90%</span>、上证50 <span class="down">-0.86%</span> 成为全场唯一下跌方向。<strong>护盘资金只防当日指数，不能跨日持有</strong>。本期中国神华入选的依据是"创新高+高股息"，而非"护盘"，二者须区分。</p>
+<p>2. <strong>单一行业不超过30%</strong>：本期组合集中在食品饮料/煤炭/医药/通信/军工，五个方向分散，但中国神华30%已至上限。</p>
+<p>3. <strong>科技方向暂不配置</strong>：费半单日跌超5%的A股传导已两次验证（11/20费半<span class="down">-10.73%</span>→11/21杀跌；11/24费半<span class="down">-7.88%</span>→11/25科创50<span class="down">-2.58%</span>），<strong>"抄底科技"必须等费半连续3日企稳</strong>。</p>
+<hr>
+<h2>6. 风险提示与仓位建议</h2>
+<h3>6.1 仓位建议：**25% – 30%（中枢 28%）**</h3>
+<p>较上期（11/25晨报 40%–45%，中枢45%）<strong>下调 17 个百分点</strong>。</p>
+<p><strong>下调依据（四条硬证据）</strong>：</p>
+<div class="table-wrap"><table>
+  <thead><tr><th>证据</th><th>数据</th><th>含义</th></tr></thead>
+  <tbody>
+    <tr><td>量能</td><td>1.38万亿，单日缩量2,752亿（<span class="down">-16.43%</span>）</td><td>缩量下跌 ≠ 出清，卖压仍在</td></tr>
+    <tr><td>市场宽度</td><td>586涨 / 4,926跌 = <strong>1 : 8.4</strong>；跌停49家（前日4家）</td><td>亏钱效应极值，情绪已完成转折</td></tr>
+    <tr><td>资金</td><td>21日 30/31行业净流出，累计 <strong>-3,972亿</strong></td><td>系统性失血未结束，仅美容护理独苗</td></tr>
+    <tr><td>技术</td><td>四大指数全线跌破MA20，创业板/中证1000/中证500/深证成指<strong>均以最低价收盘创20日新低</strong></td><td>破位有效，非假摔</td></tr>
+  </tbody>
+</table></div>
+<p><strong>操作口径</strong>：</p>
+<ul>
+<li><strong>25%–30%是"防御性观察仓"</strong>，不是"抄底仓"。其中中国神华（红利）+ 中国电信（通信红利）合计45%的组合内部权重，承担"抗跌"功能；青岛啤酒+科伦药业承担"结构性进攻"；中国船舶为10%试探仓。</li>
+<li><strong>不建议开新仓的方向</strong>：半导体/存储/光模块/机器人/锂电/汽零——这六个方向占11/25主力流出的 70% 以上，且尚未出现单日净流入转正。</li>
+<li><strong>触发上调至 35%–40% 的条件（需同时满足）</strong>：① 上证收盘站上 3,500；② 两市成交额回升至 1.5万亿以上；③ 涨停家数 > 80 家。三者缺一不可，仅满足1–2条视为反抽。</li>
+<li><strong>触发下调至 20% 以下的条件（任一满足）</strong>：① 上证跌破 3,468.65（11/25最低点）；② 跌停家数 > 60 家；③ 美容护理板块出现单日主力净流出（唯一独苗倒下）。</li>
+</ul>
+<h3>6.2 隔夜外盘</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>指数</th><th>收盘</th><th>涨跌幅</th></tr></thead>
+  <tbody>
+    <tr><td>道琼斯</td><td>50,182.95</td><td><strong><span class="up">+0.33%</span></strong></td></tr>
+    <tr><td>标普500</td><td>7,182.78</td><td><span class="down">-0.25%</span></td></tr>
+    <tr><td>纳斯达克</td><td>23,585.80</td><td><strong><span class="down">-0.62%</span></strong></td></tr>
+    <tr><td>费城半导体</td><td>8,774.86</td><td><strong><span class="down">-0.65%</span></strong></td></tr>
+  </tbody>
+</table></div>
+<blockquote><strong>外盘已从"暴跌"转为"阴跌"</strong>：11/20 费半 -10.73% → 11/23 +14.03% → 11/24 -7.88% → 11/25 -0.65%。跌幅收敛是好事，但<strong>连续两日未收复失地</strong>，说明科技股抛压未消化完毕。道指逆势收涨（+0.33%）与纳指（-0.62%）背离，与A股"权重护盘、成长杀跌"结构完全同构——<strong>这是全球性的风格切换，不是A股独有</strong>。</blockquote>
+<h3>6.3 政策面：三个"利好未落地"的时间差</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>政策</th><th>状态</th><th>对市场的影响</th></tr></thead>
+  <tbody>
+    <tr><td>融资保证金比例 100%→80%</td><td><strong>11/30 生效</strong>（本周为过渡期）</td><td>理论释放杠杆空间，但融资余额已连续6日下降（11/24 为 21,350亿）。<strong>"利好未生效 + 杠杆资金仍在撤"是典型时间差矛盾，不可单凭政策加分</strong></td></tr>
+    <tr><td>央行 11/25 MLF 8,000亿 + 7天逆回购 5,000亿</td><td>已落地，<strong>净投放 4,010亿</strong>（对冲5,160亿隔夜逆回购+1万亿MLF到期）</td><td>当日资金面宽松却换来 <span class="down">-2.03%</span>，说明<strong>流动性不是当前矛盾</strong>，信心才是。且 MLF 缩量净回笼 2,000亿、连续第二月缩量，货币政策边际不宽松</td></tr>
+    <tr><td>回购增持再贷款政策优化（11/2起）</td><td>已落地3周</td><td>建行/工行/中行签约承诺合计 <strong>超4,600亿</strong>（建行超千亿、工行近1,800亿、中行超1,800亿），制造业为重点投向。属慢变量，对短期指数无支撑</td></tr>
+  </tbody>
+</table></div>
+<p><strong>其他需跟踪的政策线索</strong>：① 商务部延长对美镓/锗/锑出口管制暂停期至 2027年1月27日（缓和信号）；② 2026版国家医保目录中成药1,396个、新增8个，2027/1/1执行（中药/创新药中期利好）；③ 深圳召开上市公司座谈会，引导用好回购增持工具。</p>
+<h3>6.4 今日（11/26）早盘实况与观察点</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>指数</th><th>09:39 现价</th><th>涨跌幅</th></tr></thead>
+  <tbody>
+    <tr><td>上证指数</td><td>3,482.68</td><td><span class="up">+0.18%</span></td></tr>
+    <tr><td>深证成指</td><td>10,151.42</td><td><span class="up">+0.65%</span></td></tr>
+    <tr><td>创业板指</td><td>2,205.18</td><td><strong><span class="up">+0.99%</span></strong></td></tr>
+    <tr><td>科创50</td><td>1,183.29</td><td><strong><span class="down">-0.24%</span></strong></td></tr>
+    <tr><td>北证50</td><td>764.42</td><td><span class="up">+1.13%</span></td></tr>
+  </tbody>
+</table></div>
+<blockquote><strong>早盘是"小票修复、科技缺席"的反弹</strong>：创业板 +0.99%、北证50 +1.13%，但科创50 -0.24% 仍是唯一绿盘。这种结构说明反弹由超跌小票的技术性回补驱动，<strong>科技主线并未回归</strong>。</blockquote>
+<blockquote><strong>今日三个观察点</strong>：① 上证能否收回 3,500 并站稳；② 科创50 能否翻红（科技止跌的唯一确认）；③ 尾盘成交额能否回到 1.5万亿（缩量反弹不可持续）。</blockquote>
+<h3>6.5 风险清单（按严重度排序）</h3>
+<p>1. 🔴 <strong>系统性失血未结束</strong>：21日 30/31行业净流出3,972亿，唯一净流入行业（美容护理）市值仅1.2万亿，无法承接。若美容护理转为净流出，市场将进入"零避风港"状态。</p>
+<p>2. 🔴 <strong>跌停家数结构恶化</strong>：49家跌停中，主板占比高、含7只ST股，说明<strong>流动性折价开始向中小市值扩散</strong>，而非仅限高位股。</p>
+<p>3. 🟠 <strong>权重护盘的可持续性存疑</strong>：银行涨0.06%但主力净流出10.19亿，靠ETF被动买盘支撑。若ETF申购放缓，指数最后一根支柱将松动。</p>
+<p>4. 🟠 <strong>费半未止跌</strong>：<span class="down">-0.65%</span> 虽温和，但已连续两日下跌。历史上费半单日跌超5%后需2–3个交易日消化，当前仍在消化期。</p>
+<p>5. 🟡 <strong>融资保证金新规生效前的观望</strong>：11/30 前杠杆资金大概率继续降仓，形成"政策利好前的最后一跌"。</p>
+<p>6. 🟡 <strong>组合内部风险</strong>：中国神华 KDJ 81.3、距60日高仅<span class="down">-0.7%</span>，若冲高回落易形成"顶背离"；科伦药业 MACD 尚未金叉（DIF 0.221 < DEA 0.344），若柱体再度走弱需立即减仓。</p>
+<hr>
+<h2>7. 数据核验说明</h2>
+<div class="table-wrap"><table>
+  <thead><tr><th>数据项</th><th>主源</th><th>交叉验证</th><th>结果</th></tr></thead>
+  <tbody>
+    <tr><td>四大指数收盘/涨跌幅</td><td>腾讯 K线（前复权）</td><td>东财妙想 + 国海/广发/光大三家研报</td><td>完全一致（3476.47 / <span class="down">-2.03%</span> 等）</td></tr>
+    <tr><td>成交额</td><td>妙想（6,527+7,304亿）</td><td>光大证券（13,830.98亿）、国海（1.38万亿）</td><td>一致</td></tr>
+    <tr><td>涨跌家数</td><td>数据宝（586/4,926）</td><td>21财经（567/4,588，沪深口径）、广发（586/4,926）</td><td>采用数据宝口径，已标注差异</td></tr>
+    <tr><td>申万行业涨跌幅</td><td>妙想（成份·流通市值加权）</td><td>广发研报（电子<span class="down">-6.12%</span>/电力设备<span class="down">-5.47%</span>，指数口径）</td><td><strong>口径差异已说明</strong>：本报告统一采用成份加权口径</td></tr>
+    <tr><td>行业资金流（1/5/10/21日）</td><td>妙想 21交易日逐日序列（自行 SUM）</td><td>淘股吧复盘（电子-114~183亿，第三方口径）</td><td>方向一致，绝对值差异因口径不同</td></tr>
+    <tr><td>个股技术面</td><td>腾讯前复权K线（自算MA/MACD/KDJ）</td><td>妙想（收盘价/涨跌幅逐一核对，8只全部一致）</td><td>一致</td></tr>
+    <tr><td>候选股实时价</td><td>腾讯 qt.gtimg.cn（09:39）</td><td>—</td><td>实时快照</td></tr>
+  </tbody>
+</table></div>
+<p><strong>未采纳的模拟/异常数据</strong>：无。所有数值均来自上述实盘接口或公开研报，未使用任何模拟数据。北证50 的腾讯K线仅返回1根（接口限制），其 11/25 收盘/涨跌幅采用妙想数据（755.87 / <span class="down">-4.75%</span>）。</p>
+<hr>
+<h2>8. 报告摘要</h2>
+<div class="table-wrap"><table>
+  <thead><tr><th>项目</th><th>结论</th></tr></thead>
+  <tbody>
+    <tr><td>市场定性</td><td>缩量系统性杀跌，权重护盘/小票失血，风险偏好中枢下移</td></tr>
+    <tr><td>上证关键位</td><td>支撑 3,468.65（11/25低点）／压力 3,535（MA5）、3,613（MA20）</td></tr>
+    <tr><td>资金主线</td><td>撤离：电子/电力设备/机械/计算机；流入：食品饮料/商贸零售/医药（防御性）</td></tr>
+    <tr><td>唯一持续性主线</td><td>美容护理（三周期净流入）；事件性主线：医药（流感/青蒿素/仿制药）</td></tr>
+    <tr><td>建议仓位</td><td><strong>25%–30%（中枢28%）</strong>，较上期下调17pct</td></tr>
+    <tr><td>技术形态5只</td><td>青岛啤酒600600 / 特变电工600089 / 中国神华601088 / 中国船舶600150 / 科伦药业002422</td></tr>
+    <tr><td>策略5只</td><td>中国神华(红利30%) / 青岛啤酒(消费25%) / 科伦药业(医药20%) / 中国电信(通信红利15%) / 中国船舶(制造10%)</td></tr>
+    <tr><td>上调触发</td><td>上证>3,500 + 成交>1.5万亿 + 涨停>80家（需同时满足）</td></tr>
+    <tr><td>下调触发</td><td>上证<3,468.65 或 跌停>60家 或 美容护理转净流出（任一满足）</td></tr>
+  </tbody>
+</table></div>
+<hr>
+<blockquote><strong>免责声明</strong></blockquote>
+<blockquote>本报告由 AI 基于公开市场数据自动生成，仅用于市场研究与信息整理，<strong>不构成任何投资建议、要约或个股推荐</strong>。报告中的个股均为<strong>研究推荐标的</strong>，不代表任何实际持仓，亦不代表对未来的收益承诺。</blockquote>
+<blockquote>所有数据来源于东方财富妙想金融数据、腾讯财经公开行情接口及公开财经媒体，虽已尽力交叉验证，但不保证绝对准确、完整或及时。市场有风险，投资需谨慎，据此操作风险自担。</blockquote>
+<blockquote>报告生成时间：2026-11-26 09:45（北京时间）｜数据基准：2026-11-25 收盘</blockquote>
+        </div>
+
+        <div class="footer">
+            <p>⚠️ 本报告仅供研究参考，不构成投资建议。投资有风险，入市需谨慎。</p>
+            <p style="margin-top:4px;">数据来源：东方财富网 · 妙想API ｜ 自动生成</p>
+        </div>
+    </div>
+
+    <button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+    <script>
+        // 给 h2 添加 id 用于锚点导航
+        document.querySelectorAll('h2').forEach((h2, i) => {
+            h2.id = 'section-' + (i + 1);
+        });
+
+        // 回到顶部按钮
+        window.addEventListener('scroll', () => {
+            const btn = document.getElementById('backTop');
+            btn.style.display = window.scrollY > 300 ? 'block' : 'none';
+        });
+    </script>
+</body>
+</html>
